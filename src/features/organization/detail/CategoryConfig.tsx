@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { CategoryTreeNode } from '@/components/CatetoryTreeNode';
-import { DefaultTable } from '@/components/DefaultTable';
 import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import {
@@ -23,13 +21,15 @@ import {
   PostCategoryList,
   PostCategoryListUpdateParams,
 } from '@/lib/api/organizations/type';
+import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import { Button } from '@/shared/components/ui/button';
+import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Input } from '@/shared/components/ui/input';
 import useModal from '@/shared/hooks/useModal';
 import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import FolderIcon from '@/shared/icons/icon-folder.svg';
 import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
-import { Button } from '@/shared/ui/button';
-import { Checkbox } from '@/shared/ui/checkbox';
-import { Input } from '@/shared/ui/input';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { PlusIcon } from 'lucide-react';

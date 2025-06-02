@@ -1,4 +1,4 @@
-import RegisterCardLayout from '@/components/RegisterCardLayout';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
 import useCreateChatbotStore, {
   PROMPT_FORMAT_LIST,
   PROMPT_STYLE_LIST,

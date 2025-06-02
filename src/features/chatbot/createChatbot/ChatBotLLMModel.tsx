@@ -1,10 +1,7 @@
 import { useEffect } from 'react';
 
-import RegisterCardLayout from '@/components/RegisterCardLayout';
 import { getLLMModelListApi } from '@/lib/api/chatbot/api';
-import useCreateChatbotStore from '@/shared/hooks/useCreateChatbotStore';
-import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
-import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
 import {
   Table,
   TableBody,
@@ -12,7 +9,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/ui/table';
+} from '@/shared/components/ui/table';
+import useCreateChatbotStore from '@/shared/hooks/useCreateChatbotStore';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
 import { useQuery } from '@tanstack/react-query';
 
 const ChatBotLLMModel = () => {

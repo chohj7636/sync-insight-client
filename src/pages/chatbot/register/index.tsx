@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import PageHeader from '@/components/PageHeader';
 import ChatBotServiceDetail from '@/features/chatbot/createChatbot/ChatBotServiceDetail';
 import ChatbotBaseInfo from '@/features/chatbot/createChatbot/ChatbotBaseInfo';
 import { createChatBotApi } from '@/lib/api/chatbot/api';
+import PageHeader from '@/shared/components/PageHeader';
+import { Button } from '@/shared/components/ui/button';
 import useCreateChatbotStore from '@/shared/hooks/useCreateChatbotStore';
-import { Button } from '@/shared/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

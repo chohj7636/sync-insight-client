@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { DragPreviewImage, useDrag, useDrop } from 'react-dnd';
 
 import { CategoryList, PostCategoryList } from '@/lib/api/organizations/type';
+import { Input } from '@/shared/components/ui/input';
 import FolderIcon from '@/shared/icons/icon-folder.svg';
 import { PlusIcon } from 'lucide-react';
 import { ChevronDownIcon } from 'lucide-react';
@@ -9,8 +10,6 @@ import { ChevronRightIcon } from 'lucide-react';
 import { X } from 'lucide-react';
 import { GripHorizontal } from 'lucide-react';
 import { toast } from 'sonner';
-
-import { Input } from '../../shared/ui/input';
 
 interface DragItem {
   id: string;

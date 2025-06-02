@@ -1,8 +1,8 @@
-import RegisterCardLayout from '@/components/RegisterCardLayout';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import useCreateChatbotStore from '@/shared/hooks/useCreateChatbotStore';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
 
 const MessageConfig = () => {
   // zustand state

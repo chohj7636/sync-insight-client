@@ -5,7 +5,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/shared/ui/select';
+} from '@/shared/components/ui/select';
 
 interface DefaultSelectProps {
   className?: string;

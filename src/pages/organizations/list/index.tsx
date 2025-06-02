@@ -1,5 +1,5 @@
-import PageHeader from "@/components/PageHeader";
-import SearchOrganizations from "@/features/searchOrganizations";
+import SearchOrganizations from '@/features/searchOrganizations';
+import PageHeader from '@/shared/components/PageHeader';
 
 const OrganizationsListPage = () => {
   return (

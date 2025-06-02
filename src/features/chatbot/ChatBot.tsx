@@ -7,9 +7,9 @@ import {
   PromptOptions,
   ReferenceFileList,
 } from '@/lib/api/chatbot/type';
-import { Button } from '@/shared/ui/button';
-import { LoadingSpinner } from '@/shared/ui/loadingSpinner';
-import { Textarea } from '@/shared/ui/textarea';
+import { Button } from '@/shared/components/ui/button';
+import { LoadingSpinner } from '@/shared/components/ui/loadingSpinner';
+import { Textarea } from '@/shared/components/ui/textarea';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';

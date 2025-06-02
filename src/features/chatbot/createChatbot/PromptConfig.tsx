@@ -1,6 +1,7 @@
-import DefaultSelect from '@/components/DefaultSelect';
-import RegisterCardLayout from '@/components/RegisterCardLayout';
 import { CreateChatBotParams, PromptOptions } from '@/lib/api/chatbot/type';
+import DefaultSelect from '@/shared/components/DefaultSelect';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
+import { Input } from '@/shared/components/ui/input';
 import useCreateChatbotStore, {
   PROMPT_FORMAT_LIST,
   PROMPT_SCOPE_LIST,
@@ -9,7 +10,6 @@ import useCreateChatbotStore, {
 } from '@/shared/hooks/useCreateChatbotStore';
 import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
-import { Input } from '@/shared/ui/input';
 
 const PromptConfig = () => {
   // zustand

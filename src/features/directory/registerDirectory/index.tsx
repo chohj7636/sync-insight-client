@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { CategoryTreeNode } from '@/components/CatetoryTreeNode';
-import ModalLayout from '@/components/ModalLayout';
-import TableModal from '@/components/TableModal';
 import {
   checkDirNameAvailable,
   postCreateDirectory,
 } from '@/lib/api/datasource/api';
 import { getCategoryListApi } from '@/lib/api/organizations/api';
+import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
+import ModalLayout from '@/shared/components/ModalLayout';
+import TableModal from '@/shared/components/TableModal';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import useModal from '@/shared/hooks/useModal';
 import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

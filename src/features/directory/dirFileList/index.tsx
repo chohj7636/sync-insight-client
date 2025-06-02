@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import DefaultSelect from '@/components/DefaultSelect';
-import { DefaultTable } from '@/components/DefaultTable';
-import ModalLayout from '@/components/ModalLayout';
-import { DefaultPagination } from '@/components/Pagination';
-import { ModalTable } from '@/components/TableModal';
 import {
   changeDataAccessLevel,
   deleteFiles,
@@ -17,10 +12,15 @@ import {
   changeDataAccessLevelParams,
 } from '@/lib/api/datasource/type';
 import { getDataAccessLevelList } from '@/lib/api/organizations/api';
+import DefaultSelect from '@/shared/components/DefaultSelect';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import ModalLayout from '@/shared/components/ModalLayout';
+import { DefaultPagination } from '@/shared/components/Pagination';
+import { ModalTable } from '@/shared/components/TableModal';
+import { Button } from '@/shared/components/ui/button';
+import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Input } from '@/shared/components/ui/input';
 import useModal from '@/shared/hooks/useModal';
-import { Button } from '@/shared/ui/button';
-import { Checkbox } from '@/shared/ui/checkbox';
-import { Input } from '@/shared/ui/input';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

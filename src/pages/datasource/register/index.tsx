@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader';
 import RegisterDirectory from '@/features/directory/registerDirectory';
+import PageHeader from '@/shared/components/PageHeader';
 
 const DirectoryRegisterPage = () => {
   return (

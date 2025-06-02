@@ -1,11 +1,11 @@
-import DefaultSelect from '@/components/DefaultSelect';
-import { DefaultTable } from '@/components/DefaultTable';
-import RegisterCardLayout from '@/components/RegisterCardLayout';
 import { getAvailableEmbeddingModelListApi } from '@/lib/api/knowledgeBases/api';
+import DefaultSelect from '@/shared/components/DefaultSelect';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
+import { Button } from '@/shared/components/ui/button';
 import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
 import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
-import { Button } from '@/shared/ui/button';
 import { useQuery } from '@tanstack/react-query';
 
 import ChunkingOptions from './ChunkingOptions';

@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-import { DefaultTable } from '@/components/DefaultTable';
 import { knowledgeBaseListInDirApi } from '@/lib/api/datasource/api';
 import { deleteDataSourceApi } from '@/lib/api/knowledgeBases/api';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import { Button } from '@/shared/components/ui/button';
+import { LoadingSpinner } from '@/shared/components/ui/loadingSpinner';
 import useModal from '@/shared/hooks/useModal';
-import { Button } from '@/shared/ui/button';
-import { LoadingSpinner } from '@/shared/ui/loadingSpinner';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

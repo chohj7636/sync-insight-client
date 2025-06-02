@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader';
 import { RegisterOrganization } from '@/features/registerOrganization';
+import PageHeader from '@/shared/components/PageHeader';
 
 const OrganizationRegisterPage = () => {
   return (

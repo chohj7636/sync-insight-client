@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 
-import DefaultSelect from '@/components/DefaultSelect';
-import { DefaultTable } from '@/components/DefaultTable';
-import ModalLayout from '@/components/ModalLayout';
-import { DefaultPagination } from '@/components/Pagination';
-import RegisterCardLayout from '@/components/RegisterCardLayout';
-import TableModal, { ModalTable } from '@/components/TableModal';
 import { checkChatbotNameAvailableApi } from '@/lib/api/chatbot/api';
 import { CreateChatBotParams } from '@/lib/api/chatbot/type';
 import { getKnowledgeBaseListApi } from '@/lib/api/knowledgeBases/api';
+import DefaultSelect from '@/shared/components/DefaultSelect';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import ModalLayout from '@/shared/components/ModalLayout';
+import { DefaultPagination } from '@/shared/components/Pagination';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
+import TableModal, { ModalTable } from '@/shared/components/TableModal';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import useCreateChatbotStore, {
   KnowledgeBaseInfoState,
   RETENTION_PERIOD_LIST,
 } from '@/shared/hooks/useCreateChatbotStore';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

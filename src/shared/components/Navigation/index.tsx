@@ -13,7 +13,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-} from '@/shared/ui/sidebar';
+} from '@/shared/components/ui/sidebar';
 import { ChevronDown } from 'lucide-react';
 
 const ITEMS = [

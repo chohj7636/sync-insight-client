@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-import { DefaultTable } from '@/components/DefaultTable';
 import { getServiceListByKnowledgeBaseApi } from '@/lib/api/knowledgeBases/api';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import { Button } from '@/shared/components/ui/button';
+import { LoadingSpinner } from '@/shared/components/ui/loadingSpinner';
 import useCreateChatbotStore, {
   KnowledgeBaseInfoState,
 } from '@/shared/hooks/useCreateChatbotStore';
-import { Button } from '@/shared/ui/button';
-import { LoadingSpinner } from '@/shared/ui/loadingSpinner';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 

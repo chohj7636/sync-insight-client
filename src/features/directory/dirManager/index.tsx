@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { DateRange } from 'react-day-picker';
 import { useNavigate } from 'react-router-dom';
 
-import DefaultSelect from '@/components/DefaultSelect';
-import { DefaultTable } from '@/components/DefaultTable';
-import { DefaultPagination } from '@/components/Pagination';
-import SearchFilterPanel from '@/components/SearchFilterPanel';
 import { getDirectoriesList } from '@/lib/api/datasource/api';
-import { Button } from '@/shared/ui/button';
+import DefaultSelect from '@/shared/components/DefaultSelect';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import { DefaultPagination } from '@/shared/components/Pagination';
+import SearchFilterPanel from '@/shared/components/SearchFilterPanel';
+import { Button } from '@/shared/components/ui/button';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import PageHeader from '@/components/PageHeader';
 import EmbeddingInfo from '@/features/createKnowledgeBases/Embedding';
 import KnowledgeBasesPreview from '@/features/createKnowledgeBases/KnowledgeBasesPreview';
 import KnowledgeBasesInfo from '@/features/createKnowledgeBases/knowledgeBasesInfo';
 import { createKnowledgeBaseApi } from '@/lib/api/knowledgeBases/api';
+import PageHeader from '@/shared/components/PageHeader';
+import { Button } from '@/shared/components/ui/button';
 import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
-import { Button } from '@/shared/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

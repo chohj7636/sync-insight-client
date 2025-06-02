@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { CategoryTreeNode } from '@/components/CatetoryTreeNode';
-import { DefaultTable } from '@/components/DefaultTable';
-import ModalLayout from '@/components/ModalLayout';
 import { connectDirectoryApi } from '@/lib/api/organizations/api';
 import {
   CategoryList,
   ConnectDirectoryParams,
 } from '@/lib/api/organizations/type';
+import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import ModalLayout from '@/shared/components/ModalLayout';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

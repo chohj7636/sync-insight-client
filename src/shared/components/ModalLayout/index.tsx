@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Button } from '../../shared/ui/button';
+import { Button } from '@/shared/components/ui/button';
 
 interface ModalLayoutProps {
   className?: string;

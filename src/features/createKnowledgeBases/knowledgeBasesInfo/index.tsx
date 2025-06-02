@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
-import { DefaultTable } from '@/components/DefaultTable';
-import ModalLayout from '@/components/ModalLayout';
-import { DefaultPagination } from '@/components/Pagination';
-import RegisterCardLayout from '@/components/RegisterCardLayout';
-import TableModal from '@/components/TableModal';
 import { getDirectoriesList } from '@/lib/api/datasource/api';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import { checkKnowledgeBaseNameAvailableApi } from '@/lib/api/knowledgeBases/api';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import ModalLayout from '@/shared/components/ModalLayout';
+import { DefaultPagination } from '@/shared/components/Pagination';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
+import TableModal from '@/shared/components/TableModal';
+import { Button } from '@/shared/components/ui/button';
+import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
-import { Button } from '@/shared/ui/button';
-import { Checkbox } from '@/shared/ui/checkbox';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

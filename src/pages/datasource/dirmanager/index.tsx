@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader';
 import DirManager from '@/features/directory/dirManager';
+import PageHeader from '@/shared/components/PageHeader';
 
 const DirectoryManagerPage = () => {
   return (

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { getOrganizationsList } from '@/lib/api/organizations/api';
-import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
-import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
 import {
   Table,
   TableBody,
@@ -10,12 +10,12 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/ui/table';
+} from '@/shared/components/ui/table';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
-import { Button } from '../../shared/ui/button';
-import { Input } from '../../shared/ui/input';
 import DefaultSelect from '../DefaultSelect';
 import { DefaultPagination } from '../Pagination';
 

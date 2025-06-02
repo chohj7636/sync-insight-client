@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-import ConfigCard from '@/components/ConfigCard';
-import { DefaultTable } from '@/components/DefaultTable';
+import ConfigCard from '@/shared/components/ConfigCard';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import { Checkbox } from '@/shared/components/ui/checkbox';
 import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
-import { Checkbox } from '@/shared/ui/checkbox';
 import { format } from 'date-fns';
 
 const KnowledgeBasesPreview = () => {

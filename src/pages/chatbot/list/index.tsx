@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader';
 import ChatBotList from '@/features/chatbot/ChatBotList';
+import PageHeader from '@/shared/components/PageHeader';
 
 const ChatbotListPage = () => {
   return (

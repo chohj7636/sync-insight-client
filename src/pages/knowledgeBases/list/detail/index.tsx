@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ConfigCard from '@/components/ConfigCard';
-import ModalLayout from '@/components/ModalLayout';
-import PageHeader from '@/components/PageHeader';
-import PageSkeleton from '@/components/Skeleton/PageSkeleton';
 import ConnectedServiceList from '@/features/knowledgeBase/connectedServiceList';
 import VectorDBDataSourceList from '@/features/knowledgeBase/detailDatasourceList';
 import {
@@ -12,9 +8,13 @@ import {
   getKnowledgeBaseDetailApi,
   updateKnowledgeBaseInfoApi,
 } from '@/lib/api/knowledgeBases/api';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
+import ConfigCard from '@/shared/components/ConfigCard';
+import ModalLayout from '@/shared/components/ModalLayout';
+import PageHeader from '@/shared/components/PageHeader';
+import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

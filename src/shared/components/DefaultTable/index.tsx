@@ -1,3 +1,4 @@
+import { Checkbox } from '@/shared/components/ui/checkbox';
 import {
   Table,
   TableBody,
@@ -5,9 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/shared/ui/table';
-
-import { Checkbox } from '../../shared/ui/checkbox';
+} from '@/shared/components/ui/table';
 
 type HeaderItem = {
   label: string;

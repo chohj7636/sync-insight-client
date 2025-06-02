@@ -2,10 +2,13 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Outlet } from 'react-router-dom';
 
-import DefaultModal from '@/components/DefaultModal';
-import Navigation from '@/components/Navigation';
-import { SidebarProvider, SidebarTrigger } from '@/shared/ui/sidebar';
-import { Toaster } from '@/shared/ui/sonner';
+import DefaultModal from '@/shared/components/DefaultModal';
+import Navigation from '@/shared/components/Navigation';
+import {
+  SidebarProvider,
+  SidebarTrigger,
+} from '@/shared/components/ui/sidebar';
+import { Toaster } from '@/shared/components/ui/sonner';
 
 const DefaultLayout = () => {
   return (

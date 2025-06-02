@@ -1,5 +1,5 @@
-import PageHeader from '@/components/PageHeader';
 import KnowledgeBaseList from '@/features/knowledgeBase/KnowledgeBaseList';
+import PageHeader from '@/shared/components/PageHeader';
 
 const KnowledgeBasesListPage = () => {
   return (

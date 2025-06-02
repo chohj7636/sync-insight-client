@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 
-import { DefaultTable } from '@/components/DefaultTable';
-import RegisterCardLayout from '@/components/RegisterCardLayout';
 import { CreateChatBotParams } from '@/lib/api/chatbot/type';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
 import useCreateChatbotStore, {
   KEYWORD_MATCH_TYPE_LIST,
   RETRIEVER_TYPE_LIST,
@@ -11,8 +13,6 @@ import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import EyeOffIcon from '@/shared/icons/icon-eyeOff.svg';
 import EyeOnIcon from '@/shared/icons/icon-eyeOn.svg';
 import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
 
 const RetrieverConfig = () => {
   // zustand

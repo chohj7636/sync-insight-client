@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { DefaultTable } from '@/components/DefaultTable';
-import ModalLayout from '@/components/ModalLayout';
 import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import {
@@ -13,9 +11,11 @@ import {
   syncKnowledgeBaseApi,
 } from '@/lib/api/knowledgeBases/api';
 import { AddDataSourceParams } from '@/lib/api/knowledgeBases/type';
-import { Button } from '@/shared/ui/button';
-import { Checkbox } from '@/shared/ui/checkbox';
-import { Textarea } from '@/shared/ui/textarea';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import ModalLayout from '@/shared/components/ModalLayout';
+import { Button } from '@/shared/components/ui/button';
+import { Checkbox } from '@/shared/components/ui/checkbox';
+import { Textarea } from '@/shared/components/ui/textarea';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

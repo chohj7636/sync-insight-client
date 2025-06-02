@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ModalLayout from '@/components/ModalLayout';
-import PageHeader from '@/components/PageHeader';
-import PageSkeleton from '@/components/Skeleton/PageSkeleton';
 import CategoryConfig from '@/features/organization/detail/CategoryConfig';
 import DataAccessLevelConfig from '@/features/organization/detail/DataAccessLevelConfig';
 import {
@@ -12,9 +9,12 @@ import {
   putChangeOrganizationInfo,
 } from '@/lib/api/organizations/api';
 import { GetOrganizationDetailResponse } from '@/lib/api/organizations/type';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
+import ModalLayout from '@/shared/components/ModalLayout';
+import PageHeader from '@/shared/components/PageHeader';
+import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

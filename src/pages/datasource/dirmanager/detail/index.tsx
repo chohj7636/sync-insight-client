@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-import PageHeader from '@/components/PageHeader';
-import PageSkeleton from '@/components/Skeleton/PageSkeleton';
 import DirectoryFileList from '@/features/directory/dirFileList';
 import DirKnowledgeBaseList from '@/features/directory/dirKnowledgeBaseList';
 import DirectoryInfoPanel from '@/features/directory/directoryInfo';
 import { getDirectoryDetail } from '@/lib/api/datasource/api';
+import PageHeader from '@/shared/components/PageHeader';
+import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
 import { useQuery } from '@tanstack/react-query';
 
 const DirDetailPage = () => {

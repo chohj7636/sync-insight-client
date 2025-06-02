@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { DefaultTable } from '@/components/DefaultTable';
-import ModalLayout from '@/components/ModalLayout';
-import { ModalTable } from '@/components/TableModal';
 import {
   deleteDataAccessLevelApi,
   getDataAccessLevelList,
@@ -14,12 +11,15 @@ import {
   AddDataAccessLevelList,
   DataAccessLevelList,
 } from '@/lib/api/organizations/type';
+import { DefaultTable } from '@/shared/components/DefaultTable';
+import ModalLayout from '@/shared/components/ModalLayout';
+import { ModalTable } from '@/shared/components/TableModal';
+import { Button } from '@/shared/components/ui/button';
+import { Input } from '@/shared/components/ui/input';
+import { Textarea } from '@/shared/components/ui/textarea';
 import useModal from '@/shared/hooks/useModal';
 import EyeOffIcon from '@/shared/icons/icon-eyeOff.svg';
 import EyeOnIcon from '@/shared/icons/icon-eyeOn.svg';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { Textarea } from '@/shared/ui/textarea';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
