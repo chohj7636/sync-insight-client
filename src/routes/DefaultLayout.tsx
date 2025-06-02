@@ -4,8 +4,8 @@ import { Outlet } from 'react-router-dom';
 
 import DefaultModal from '@/components/DefaultModal';
 import Navigation from '@/components/Navigation';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { Toaster } from '@/components/ui/sonner';
+import { SidebarProvider, SidebarTrigger } from '@/shared/ui/sidebar';
+import { Toaster } from '@/shared/ui/sonner';
 
 const DefaultLayout = () => {
   return (

@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import useCreateKnowledgeBaseStore from '@/hooks/useCreateKnowledgeBaseStore';
-import { format } from 'date-fns';
-import { DefaultTable } from '@/components/DefaultTable';
-import { Checkbox } from '@/components/ui/checkbox';
+
 import ConfigCard from '@/components/ConfigCard';
+import { DefaultTable } from '@/components/DefaultTable';
+import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
+import { Checkbox } from '@/shared/ui/checkbox';
+import { format } from 'date-fns';
 
 const KnowledgeBasesPreview = () => {
   // zustand state

@@ -14,7 +14,6 @@ import MainPage from './main';
 import OrganizationsListPage from './organizations/list';
 import OrganizationDetailPage from './organizations/list/detail';
 import OrganizationRegisterPage from './organizations/register';
-import Test1 from './test1';
 
 const RootRouter = () => {
   return (
@@ -64,8 +63,6 @@ const RootRouter = () => {
           path="/chatbot/list/:chatbotId"
           element={<ChatBotServiceDetailPage />}
         />
-
-        <Route path="/test1" element={<Test1 />} />
       </Route>
     </Routes>
   );

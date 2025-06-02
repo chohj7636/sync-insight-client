@@ -1,13 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
-import RegisterCardLayout from '@/components/RegisterCardLayout';
-import ActiveRadioIcon from '@/assets/icons/icon-activeRadio.svg';
-import InactiveRadioIcon from '@/assets/icons/icon-inactiveRadio.svg';
 import DefaultSelect from '@/components/DefaultSelect';
-import useCreateKnowledgeBaseStore from '@/hooks/useCreateKnowledgeBaseStore';
-import { Button } from '@/components/ui/button';
 import { DefaultTable } from '@/components/DefaultTable';
-import ChunkingOptions from './ChunkingOptions';
+import RegisterCardLayout from '@/components/RegisterCardLayout';
 import { getAvailableEmbeddingModelListApi } from '@/lib/api/knowledgeBases/api';
+import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import { Button } from '@/shared/ui/button';
+import { useQuery } from '@tanstack/react-query';
+
+import ChunkingOptions from './ChunkingOptions';
 
 const HEADERLIST = [
   { label: '청킹방식', key: 'id' },

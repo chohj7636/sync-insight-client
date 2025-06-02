@@ -1,23 +1,9 @@
 import { useState } from 'react';
 
-import ActiveRadioIcon from '@/assets/icons/icon-activeRadio.svg';
-import IconActiveRadio from '@/assets/icons/icon-grayActiveRadio.svg';
-import IconInactiveRadio from '@/assets/icons/icon-inactiveRadio.svg';
-import IconSetting from '@/assets/icons/icon-setting.svg';
 import ConfigCardLayout from '@/components/ConfigCardLayout';
 import DefaultSelect from '@/components/DefaultSelect';
 import { DefaultTable } from '@/components/DefaultTable';
 import ModalLayout from '@/components/ModalLayout';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import {
-  KEYWORD_MATCH_TYPE_LIST,
-  PROMPT_FORMAT_LIST,
-  PROMPT_SCOPE_LIST,
-  PROMPT_STYLE_LIST,
-  RETRIEVER_TYPE_LIST,
-  SOURCE_ENABLED_TYPE_LIST,
-} from '@/hooks/useCreateChatbotStore';
 import {
   getLLMModelListApi,
   updateChatBotLLMConfigApi,
@@ -29,6 +15,20 @@ import {
   CreateChatBotParams,
   PromptOptions,
 } from '@/lib/api/chatbot/type';
+import {
+  KEYWORD_MATCH_TYPE_LIST,
+  PROMPT_FORMAT_LIST,
+  PROMPT_SCOPE_LIST,
+  PROMPT_STYLE_LIST,
+  RETRIEVER_TYPE_LIST,
+  SOURCE_ENABLED_TYPE_LIST,
+} from '@/shared/hooks/useCreateChatbotStore';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import IconActiveRadio from '@/shared/icons/icon-grayActiveRadio.svg';
+import IconInactiveRadio from '@/shared/icons/icon-inactiveRadio.svg';
+import IconSetting from '@/shared/icons/icon-setting.svg';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

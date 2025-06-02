@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import IconSetting from '@/assets/icons/icon-setting.svg';
 import ConfigCardLayout from '@/components/ConfigCardLayout';
 import { DefaultTable } from '@/components/DefaultTable';
 import ModalLayout from '@/components/ModalLayout';
 import PageHeader from '@/components/PageHeader';
 import PageSkeleton from '@/components/Skeleton/PageSkeleton';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
-import { Textarea } from '@/components/ui/textarea';
 import ChatBot from '@/features/chatbot/ChatBot';
 import ReferListCard from '@/features/chatbot/ReferListCard';
 import { SearchKnowledgeBaseModal } from '@/features/chatbot/createChatbot/ChatbotBaseInfo';
 import ChatBotUpdateConfigWrap from '@/features/chatbot/detailChatbot/ChatBotUpdateConfigWrap';
-import { KnowledgeBaseInfoState } from '@/hooks/useCreateChatbotStore';
 import {
   checkChatbotNameAvailableApi,
   deleteChatBotKnowledgeBaseApi,
@@ -36,6 +30,12 @@ import {
   UpdateChatBotServiceInfoParams,
   UpdateChatBotStatusParams,
 } from '@/lib/api/chatbot/type';
+import { KnowledgeBaseInfoState } from '@/shared/hooks/useCreateChatbotStore';
+import IconSetting from '@/shared/icons/icon-setting.svg';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
+import { LoadingSpinner } from '@/shared/ui/loadingSpinner';
+import { Textarea } from '@/shared/ui/textarea';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

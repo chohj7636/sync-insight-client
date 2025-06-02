@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import IconDownArrow from '@/assets/icons/icon-down.svg';
-import { Button } from '@/components/ui/button';
 import { downloadReferFile } from '@/lib/api/chatbot/api';
 import { ReferenceFileList } from '@/lib/api/chatbot/type';
+import IconDownArrow from '@/shared/icons/icon-down.svg';
+import { Button } from '@/shared/ui/button';
 import { toast } from 'sonner';
 
 interface ReferListCardProps {

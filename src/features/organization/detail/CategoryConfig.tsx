@@ -1,16 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import ActiveRadioIcon from '@/assets/icons/icon-activeRadio.svg';
-import FolderIcon from '@/assets/icons/icon-folder.svg';
-import InactiveRadioIcon from '@/assets/icons/icon-inactiveRadio.svg';
 import { CategoryTreeNode } from '@/components/CatetoryTreeNode';
 import { DefaultTable } from '@/components/DefaultTable';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
 import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
-import useModal from '@/hooks/useModal';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import {
   changeCategoryEnabledApi,
@@ -30,6 +23,13 @@ import {
   PostCategoryList,
   PostCategoryListUpdateParams,
 } from '@/lib/api/organizations/type';
+import useModal from '@/shared/hooks/useModal';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import FolderIcon from '@/shared/icons/icon-folder.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import { Button } from '@/shared/ui/button';
+import { Checkbox } from '@/shared/ui/checkbox';
+import { Input } from '@/shared/ui/input';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { PlusIcon } from 'lucide-react';

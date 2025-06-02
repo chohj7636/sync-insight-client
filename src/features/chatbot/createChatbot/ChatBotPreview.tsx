@@ -2,7 +2,7 @@ import RegisterCardLayout from '@/components/RegisterCardLayout';
 import useCreateChatbotStore, {
   PROMPT_FORMAT_LIST,
   PROMPT_STYLE_LIST,
-} from '@/hooks/useCreateChatbotStore';
+} from '@/shared/hooks/useCreateChatbotStore';
 
 import ChatBot from '../ChatBot';
 import ReferListCard from '../ReferListCard';

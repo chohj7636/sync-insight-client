@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import {
   Sidebar,
   SidebarContent,
@@ -10,10 +13,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-} from '@/components/ui/sidebar';
+} from '@/shared/ui/sidebar';
 import { ChevronDown } from 'lucide-react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 const ITEMS = [
   {
     title: '대시보드',

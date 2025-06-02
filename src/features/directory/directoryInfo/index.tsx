@@ -1,13 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ActiveRadioIcon from '@/assets/icons/icon-activeRadio.svg';
-import InactiveRadioIcon from '@/assets/icons/icon-inactiveRadio.svg';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import ChangeCategoryModal from '@/features/organization/detail/ChangeCategoryModal';
-import useModal from '@/hooks/useModal';
 import {
   checkDirNameAvailable,
   deleteDirectory,
@@ -15,6 +9,12 @@ import {
   updateDirectoryInfo,
 } from '@/lib/api/datasource/api';
 import { getCategoryListApi } from '@/lib/api/organizations/api';
+import useModal from '@/shared/hooks/useModal';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
+import { Textarea } from '@/shared/ui/textarea';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

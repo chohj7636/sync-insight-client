@@ -1,9 +1,9 @@
 import DefaultSelect from '@/components/DefaultSelect';
 import { DefaultTable } from '@/components/DefaultTable';
 import RegisterCardLayout from '@/components/RegisterCardLayout';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import useCreateKnowledgeBaseStore from '@/hooks/useCreateKnowledgeBaseStore';
+import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
 
 interface ChunkingOptionsProps {
   chunkingType: 'RECURSIVE' | 'TEXT' | 'SEMANTIC';

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import ActiveRadioIcon from '@/assets/icons/icon-activeRadio.svg';
-import InactiveRadioIcon from '@/assets/icons/icon-inactiveRadio.svg';
+import { getOrganizationsList } from '@/lib/api/organizations/api';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
 import {
   Table,
   TableBody,
@@ -9,15 +10,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { getOrganizationsList } from '@/lib/api/organizations/api';
+} from '@/shared/ui/table';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
+import { Button } from '../../shared/ui/button';
+import { Input } from '../../shared/ui/input';
 import DefaultSelect from '../DefaultSelect';
 import { DefaultPagination } from '../Pagination';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 
 interface TableModalProps {
   type: 'organization' | 'directory';

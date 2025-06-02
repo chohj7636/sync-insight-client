@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import EyeOffIcon from '@/assets/icons/icon-eyeOff.svg';
-import EyeOnIcon from '@/assets/icons/icon-eyeOn.svg';
 import { DefaultTable } from '@/components/DefaultTable';
 import RegisterCardLayout from '@/components/RegisterCardLayout';
-import { Button } from '@/components/ui/button';
-import useCreateChatbotStore from '@/hooks/useCreateChatbotStore';
+import useCreateChatbotStore from '@/shared/hooks/useCreateChatbotStore';
+import EyeOffIcon from '@/shared/icons/icon-eyeOff.svg';
+import EyeOnIcon from '@/shared/icons/icon-eyeOn.svg';
+import { Button } from '@/shared/ui/button';
 
 import { InputWrapper } from './RetrieverConfig';
 

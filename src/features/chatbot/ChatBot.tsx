@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-import { LoadingSpinner } from '@/components/ui/loadingSpinner';
-import { Textarea } from '@/components/ui/textarea';
 import { agentChattingApi, previewChattingApi } from '@/lib/api/chatbot/api';
 import {
   AgentChattingParams,
@@ -10,6 +7,9 @@ import {
   PromptOptions,
   ReferenceFileList,
 } from '@/lib/api/chatbot/type';
+import { Button } from '@/shared/ui/button';
+import { LoadingSpinner } from '@/shared/ui/loadingSpinner';
+import { Textarea } from '@/shared/ui/textarea';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { toast } from 'sonner';

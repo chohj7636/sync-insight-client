@@ -1,15 +1,15 @@
-import ActiveRadioIcon from '@/assets/icons/icon-activeRadio.svg';
-import InactiveRadioIcon from '@/assets/icons/icon-inactiveRadio.svg';
 import DefaultSelect from '@/components/DefaultSelect';
 import RegisterCardLayout from '@/components/RegisterCardLayout';
-import { Input } from '@/components/ui/input';
+import { CreateChatBotParams, PromptOptions } from '@/lib/api/chatbot/type';
 import useCreateChatbotStore, {
   PROMPT_FORMAT_LIST,
   PROMPT_SCOPE_LIST,
   PROMPT_STYLE_LIST,
   SOURCE_ENABLED_TYPE_LIST,
-} from '@/hooks/useCreateChatbotStore';
-import { CreateChatBotParams, PromptOptions } from '@/lib/api/chatbot/type';
+} from '@/shared/hooks/useCreateChatbotStore';
+import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
+import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import { Input } from '@/shared/ui/input';
 
 const PromptConfig = () => {
   // zustand

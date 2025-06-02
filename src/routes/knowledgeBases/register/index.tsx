@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import PageHeader from '@/components/PageHeader';
-import { Button } from '@/components/ui/button';
 import EmbeddingInfo from '@/features/createKnowledgeBases/Embedding';
 import KnowledgeBasesPreview from '@/features/createKnowledgeBases/KnowledgeBasesPreview';
 import KnowledgeBasesInfo from '@/features/createKnowledgeBases/knowledgeBasesInfo';
-import useCreateKnowledgeBaseStore from '@/hooks/useCreateKnowledgeBaseStore';
 import { createKnowledgeBaseApi } from '@/lib/api/knowledgeBases/api';
+import useCreateKnowledgeBaseStore from '@/shared/hooks/useCreateKnowledgeBaseStore';
+import { Button } from '@/shared/ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 

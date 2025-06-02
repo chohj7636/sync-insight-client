@@ -5,10 +5,6 @@ import { DefaultTable } from '@/components/DefaultTable';
 import ModalLayout from '@/components/ModalLayout';
 import { DefaultPagination } from '@/components/Pagination';
 import { ModalTable } from '@/components/TableModal';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import useModal from '@/hooks/useModal';
 import {
   changeDataAccessLevel,
   deleteFiles,
@@ -21,6 +17,10 @@ import {
   changeDataAccessLevelParams,
 } from '@/lib/api/datasource/type';
 import { getDataAccessLevelList } from '@/lib/api/organizations/api';
+import useModal from '@/shared/hooks/useModal';
+import { Button } from '@/shared/ui/button';
+import { Checkbox } from '@/shared/ui/checkbox';
+import { Input } from '@/shared/ui/input';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';

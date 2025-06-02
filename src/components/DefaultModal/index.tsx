@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-import useModal from '@/hooks/useModal';
+import useModal from '@/shared/hooks/useModal';
 
-import { Button } from '../ui/button';
+import { Button } from '../../shared/ui/button';
 
 /**
  * DefaultModal 컴포넌트
