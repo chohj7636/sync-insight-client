@@ -1,19 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 
-import DefaultLayout from './DefaultLayout';
-import ChatbotListPage from './chatbot/list';
-import ChatBotServiceDetailPage from './chatbot/list/detail';
-import ChatbotRegisterPage from './chatbot/register';
-import DirectoryManagerPage from './datasource/dirmanager';
-import DirDetailPage from './datasource/dirmanager/detail';
-import DirectoryRegisterPage from './datasource/register';
-import KnowledgeBasesListPage from './knowledgeBases/list';
-import KnowledgeDetailPage from './knowledgeBases/list/detail';
-import KnowledgeBasesRegisterPage from './knowledgeBases/register';
-import MainPage from './main';
-import OrganizationsListPage from './organizations/list';
-import OrganizationDetailPage from './organizations/list/detail';
-import OrganizationRegisterPage from './organizations/register';
+import DefaultLayout from '@/pages/DefaultLayout';
+import ChatbotListPage from '@/pages/chatbot/list';
+import ChatBotServiceDetailPage from '@/pages/chatbot/list/detail';
+import ChatbotRegisterPage from '@/pages/chatbot/register';
+import DirectoryManagerPage from '@/pages/datasource/dirmanager';
+import DirDetailPage from '@/pages/datasource/dirmanager/detail';
+import DirectoryRegisterPage from '@/pages/datasource/register';
+import KnowledgeBasesListPage from '@/pages/knowledgeBases/list';
+import KnowledgeDetailPage from '@/pages/knowledgeBases/list/detail';
+import KnowledgeBasesRegisterPage from '@/pages/knowledgeBases/register';
+import MainPage from '@/pages/main';
+import OrganizationsListPage from '@/pages/organizations/list';
+import OrganizationDetailPage from '@/pages/organizations/list/detail';
+import OrganizationRegisterPage from '@/pages/organizations/register';
 
 const RootRouter = () => {
   return (
