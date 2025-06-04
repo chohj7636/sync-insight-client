@@ -8,8 +8,6 @@ import {
   ChangeCategoryEnabledResponse,
   ChangeCategoryVisibleParams,
   ChangeCategoryVisibleResponse,
-  ChangeOrganizationInfoParams,
-  ChangeOrganizationInfoResponse,
   ChangeOrganizationLogoParams,
   ConnectDirectoryParams,
   ConnectDirectoryResponse,
@@ -67,27 +65,6 @@ export const postChangeOrganLogo = async (
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-      withCredentials: true,
-    },
-  );
-  return response.data;
-};
-
-// PUT 회원사 기본정보 변경
-export const putChangeOrganizationInfo = async (
-  info: ChangeOrganizationInfoParams,
-) => {
-  const response = await axios.put<ChangeOrganizationInfoResponse>(
-    `${apiInfo.api_url}/organizations/${info.organId}`,
-    {
-      organHeadName: info.organHeadName,
-      bizRegNo: info.bizRegNo,
-      description: info.description,
-      adminName: info.adminName,
-      adminEmail: info.adminEmail,
-      adminPhone: info.adminPhone,
-    },
-    {
       withCredentials: true,
     },
   );
