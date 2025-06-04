@@ -1,20 +1,18 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { OrganizationDetailResponse } from '@/entities/organizationDetail/api/type';
+import { useGetOrganDetailInfo } from '@/entities/organizationDetail/hooks/useGetOrganDetailInfo';
 import CategoryConfig from '@/features/organization/detail/CategoryConfig';
 import DataAccessLevelConfig from '@/features/organization/detail/DataAccessLevelConfig';
-import {
-  getOrganizationDetailApi,
-  postChangeOrganLogo,
-} from '@/lib/api/organizations/api';
-import { GetOrganizationDetailResponse } from '@/lib/api/organizations/type';
+import { postChangeOrganLogo } from '@/lib/api/organizations/api';
 import PageHeader from '@/shared/components/PageHeader';
 import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { ChangeOrganInfoModal } from '@/widgets/ChangeOrganInfoModal/ChangeOrganInfoModal';
 import OrganizationDetailPanel from '@/widgets/OrganizationDetailPanel';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 const OrganizationDetailPage = () => {
@@ -26,18 +24,8 @@ const OrganizationDetailPage = () => {
     useState(false);
 
   // 회원사 상세 조회 query
-  const {
-    data: organDetailData,
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ['organizations', organId],
-    queryFn: () => getOrganizationDetailApi({ organId: organId as string }),
-    retry: false,
-    refetchOnWindowFocus: false,
-    gcTime: 0,
-    refetchOnMount: false,
-  });
+  const { organDetailData, isLoadingOrganDetail, refetchOrganDetail } =
+    useGetOrganDetailInfo(organId as string);
 
   // 회원사 로고 변경 query
   const { mutate: changeOrganLogo } = useMutation({
@@ -51,7 +39,7 @@ const OrganizationDetailPage = () => {
         duration: 2000,
         position: 'top-center',
       });
-      refetch();
+      refetchOrganDetail();
     },
   });
 
@@ -88,7 +76,7 @@ const OrganizationDetailPage = () => {
     },
   ];
 
-  if (isLoading) {
+  if (isLoadingOrganDetail) {
     return <PageSkeleton />;
   }
   return (
@@ -114,11 +102,12 @@ const OrganizationDetailPage = () => {
         />
         {openChangeOrganInfoModal && (
           <ChangeOrganInfoModal
-            organInfo={organDetailData as GetOrganizationDetailResponse}
+            organInfo={organDetailData as OrganizationDetailResponse}
             closeModal={() => setOpenChangeOrganInfoModal(false)}
-            refetchDetailInfo={() => refetch()}
+            refetchDetailInfo={() => refetchOrganDetail()}
           />
         )}
+
         <div className="flex w-full flex-col gap-7">
           <div className="flex w-full gap-2">
             {SUBMENU.map((menu) => {

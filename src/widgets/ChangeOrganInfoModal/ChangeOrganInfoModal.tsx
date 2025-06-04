@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
+import { OrganizationDetailResponse } from '@/entities/organizationDetail/api/type';
 import { putChangeOrganizationInfo } from '@/features-rebuild/changeOrgainInfo/api/api';
-import { GetOrganizationDetailResponse } from '@/lib/api/organizations/type';
 import ModalLayout from '@/shared/components/ModalLayout';
 import { Input } from '@/shared/components/ui/input';
 import { Textarea } from '@/shared/components/ui/textarea';
@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 interface ChangeOrganInfoModalProps {
-  organInfo: GetOrganizationDetailResponse;
+  organInfo: OrganizationDetailResponse;
   closeModal: () => void;
   refetchDetailInfo: () => void;
 }

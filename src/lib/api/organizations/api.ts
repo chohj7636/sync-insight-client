@@ -19,8 +19,6 @@ import {
   GetCategoryDirectoryListResponse,
   GetCategoryListParams,
   GetCategoryListResponse,
-  GetOrganizationDetailParams,
-  GetOrganizationDetailResponse,
   PostCategoryListUpdateParams,
   PostCategoryListUpdateResponse,
   SyncDataParams,
@@ -37,19 +35,6 @@ let { apiInfo } = config;
 if (!env) {
   apiInfo = config.apiInfo_dev;
 }
-
-// GET 회원사 상세 조회
-export const getOrganizationDetailApi = async (
-  info: GetOrganizationDetailParams,
-) => {
-  const response = await axios.get<GetOrganizationDetailResponse>(
-    `${apiInfo.api_url}/organizations/${info.organId}`,
-    {
-      withCredentials: true,
-    },
-  );
-  return response.data;
-};
 
 // POST 회원사 로고 변경
 export const postChangeOrganLogo = async (
