@@ -4,12 +4,6 @@ export interface FileData {
   fileDownloadUrl: string;
 }
 
-// 회원사 로고 변경
-export interface ChangeOrganizationLogoParams {
-  organId: string;
-  file: File;
-}
-
 // GET 회원사별 데이터 등급 조회
 export interface getDataAccessLevelListParams {
   organId: string;

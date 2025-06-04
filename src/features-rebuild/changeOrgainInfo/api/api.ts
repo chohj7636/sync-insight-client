@@ -4,6 +4,7 @@ import axios from 'axios';
 import {
   ChangeOrganizationInfoParams,
   ChangeOrganizationInfoResponse,
+  ChangeOrganizationLogoParams,
 } from './type';
 
 const env = import.meta.env.PROD;
@@ -14,7 +15,7 @@ if (!env) {
 }
 
 // PUT 회원사 기본정보 변경
-export const putChangeOrganizationInfo = async (
+export const putChangeOrganizationInfoApi = async (
   info: ChangeOrganizationInfoParams,
 ) => {
   const response = await axios.put<ChangeOrganizationInfoResponse>(
@@ -28,6 +29,26 @@ export const putChangeOrganizationInfo = async (
       adminPhone: info.adminPhone,
     },
     {
+      withCredentials: true,
+    },
+  );
+  return response.data;
+};
+
+// POST 회원사 로고 변경
+export const postChangeOrganLogoApi = async (
+  info: ChangeOrganizationLogoParams,
+) => {
+  const formData = new FormData();
+  formData.append('file', info.file);
+
+  const response = await axios.post(
+    `${apiInfo.api_url}/organizations/${info.organId}/logo`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
       withCredentials: true,
     },
   );

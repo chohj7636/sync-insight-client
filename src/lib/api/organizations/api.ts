@@ -8,7 +8,6 @@ import {
   ChangeCategoryEnabledResponse,
   ChangeCategoryVisibleParams,
   ChangeCategoryVisibleResponse,
-  ChangeOrganizationLogoParams,
   ConnectDirectoryParams,
   ConnectDirectoryResponse,
   DeleteCategoryParams,
@@ -35,26 +34,6 @@ let { apiInfo } = config;
 if (!env) {
   apiInfo = config.apiInfo_dev;
 }
-
-// POST 회원사 로고 변경
-export const postChangeOrganLogo = async (
-  info: ChangeOrganizationLogoParams,
-) => {
-  const formData = new FormData();
-  formData.append('file', info.file);
-
-  const response = await axios.post(
-    `${apiInfo.api_url}/organizations/${info.organId}/logo`,
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      withCredentials: true,
-    },
-  );
-  return response.data;
-};
 
 // GET 회원사별 데이터등급 조회
 export const getDataAccessLevelList = async (

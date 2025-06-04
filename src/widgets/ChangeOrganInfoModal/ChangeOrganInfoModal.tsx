@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { OrganizationDetailResponse } from '@/entities/organizationDetail/api/type';
-import { putChangeOrganizationInfo } from '@/features-rebuild/changeOrgainInfo/api/api';
+import { putChangeOrganizationInfoApi } from '@/features-rebuild/changeOrgainInfo/api/api';
 import ModalLayout from '@/shared/components/ModalLayout';
 import { Input } from '@/shared/components/ui/input';
 import { Textarea } from '@/shared/components/ui/textarea';
@@ -30,7 +30,7 @@ export const ChangeOrganInfoModal = ({
   // 회원사 기본정보 변경 query
   const { mutate: changeOrganInfo } = useMutation({
     mutationFn: () =>
-      putChangeOrganizationInfo({
+      putChangeOrganizationInfoApi({
         organId: organInfo.id,
         organHeadName: organHeadName ?? '',
         bizRegNo,
