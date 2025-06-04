@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { getOrganizationsList } from '@/lib/api/organizations/api';
+import { getOrganizationsList } from '@/entities/organizationList/api/api';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import {

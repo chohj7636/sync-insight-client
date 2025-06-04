@@ -1,39 +1,3 @@
-// GET 회원사 목룍 가지고오기
-export interface getOrganizationsListParams {
-  organName?: string;
-  bizRegNo?: string;
-  statuses?: 'ACTIVE' | 'INACTIVE';
-  createdAtFrom?: string;
-  createdAtTo?: string;
-  page?: number;
-  size?: number;
-  sort?: 'createdAt,ASC' | 'createdAt,DESC';
-}
-
-export interface getOrganizationsListResponse {
-  code: string;
-  message: string;
-  payload: getOrganizationsListResponsePayload;
-}
-
-export interface getOrganizationsListResponsePayload {
-  content: OrganizationListData[];
-  totalPages: number;
-  totalElements: number;
-  numberOfElements: number;
-}
-
-export interface OrganizationListData {
-  id: string;
-  organName: string;
-  bizRegNo: string;
-  adminName: string;
-  adminPhone: string;
-  adminEmail: string;
-  createAt: string;
-  status: 'ACTIVE' | 'INACTIVE';
-}
-
 // GET 회원사 상세 조회
 export interface GetOrganizationDetailParams {
   organId: string;
