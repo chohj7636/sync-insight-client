@@ -1,7 +1,14 @@
+import { useState } from 'react';
+
+import { DataAccessLevelList } from '@/entities/dataAccessLevelList/api/type';
+import { useGetDataAccessLevel } from '@/entities/dataAccessLevelList/hooks/useGetDataAccessLevel';
 import { OrganizationDetailResponse } from '@/entities/organizationDetail/api/type';
 import useChangeOrganInfo from '@/features-rebuild/changeOrgainInfo/hooks/useChangeOrganInfo';
-import DataAccessLevelConfig from '@/features/organization/detail/DataAccessLevelConfig';
+import DataAccessLevelConfig from '@/features-rebuild/dataAccessLevel/ui/DataAccessLevelConfig';
 import { Input } from '@/shared/components/ui/input';
+
+import { AddDataAccessLevelModal } from '../AddDataLevelModal';
+import { TransferDataLevelModal } from '../TransferDataLevelModal';
 
 interface OrganizationIndividualSettingsProps {
   organId: string;
@@ -14,6 +21,15 @@ const OrganizationIndividualSettings = ({
   organDetailData,
   refetchOrganDetail,
 }: OrganizationIndividualSettingsProps) => {
+  // state
+  const [openAddDataLevelModal, setOpenAddDataLevelModal] = useState(false);
+  const [transferDataLevel, setTransferDataLevel] =
+    useState<DataAccessLevelList | null>(null); // 변경 대상 데이터등급 명
+
+  // 데이터 등급 조회 query
+  const { dataAccessLevelList, refetchDataAccessLevel } =
+    useGetDataAccessLevel(organId);
+
   // 회원사 로고 변경 query
   const { changeOrganLogo } = useChangeOrganInfo({
     organId: organId as string,
@@ -82,7 +98,39 @@ const OrganizationIndividualSettings = ({
 
       <div className="h-[1px] w-full bg-[#E4E7EB]" />
 
-      <DataAccessLevelConfig organId={organId as string} />
+      <DataAccessLevelConfig
+        organId={organId}
+        dataAccessLevelList={dataAccessLevelList?.payload || []}
+        setOpenAddDataLevelModal={setOpenAddDataLevelModal}
+        refetchDataAccessLevelList={refetchDataAccessLevel}
+        setTransferDataLevel={setTransferDataLevel}
+      />
+      {openAddDataLevelModal && (
+        <AddDataAccessLevelModal
+          organId={organId}
+          dataAccessLevelList={
+            dataAccessLevelList?.payload.map((data) => ({
+              name: data.name,
+              description: data.description,
+            })) || []
+          }
+          closeModal={() => setOpenAddDataLevelModal(false)}
+          refetchDataAccessLevelList={refetchDataAccessLevel}
+        />
+      )}
+      {transferDataLevel && (
+        <TransferDataLevelModal
+          organId={organId}
+          prevDataLevel={transferDataLevel}
+          originDataLevelList={
+            dataAccessLevelList?.payload.filter(
+              (data) => data.name !== transferDataLevel.name,
+            ) || []
+          }
+          closeModal={() => setTransferDataLevel(null)}
+          refetchDataAccessLevelList={refetchDataAccessLevel}
+        />
+      )}
     </div>
   );
 };

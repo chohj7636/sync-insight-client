@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { getDataAccessLevelListApi } from '@/entities/dataAccessLevelList/api/api';
 import {
   changeDataAccessLevel,
   deleteFiles,
@@ -11,7 +12,6 @@ import {
   DirectoryFileListData,
   changeDataAccessLevelParams,
 } from '@/lib/api/datasource/type';
-import { getDataAccessLevelList } from '@/lib/api/organizations/api';
 import DefaultSelect from '@/shared/components/DefaultSelect';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import ModalLayout from '@/shared/components/ModalLayout';
@@ -450,7 +450,7 @@ const ChageDataLevelModal = ({
   // 데이터 등급 조회 query
   const { data: dataLevelList } = useQuery({
     queryKey: ['dataLevelList', organId],
-    queryFn: () => getDataAccessLevelList({ organId }),
+    queryFn: () => getDataAccessLevelListApi({ organId }),
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
     refetchOnMount: false,

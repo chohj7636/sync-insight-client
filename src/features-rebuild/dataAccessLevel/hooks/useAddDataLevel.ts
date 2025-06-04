@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { postAddDataAccessLevelApi } from '../api/api';
-import { AddDataAccessLevelList } from '../api/type';
+import { postAddDataAccessLevelApi } from '../../dataAccessLevel/api/api';
+import { AddDataAccessLevelList } from '../../dataAccessLevel/api/type';
 
 interface useAddDataLevelProps {
   organId: string;

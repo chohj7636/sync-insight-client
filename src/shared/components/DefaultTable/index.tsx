@@ -20,7 +20,7 @@ type HeaderItem = {
   children?: Omit<HeaderItem, 'label' | 'children'>[];
 };
 
-type DefaultTableProps = {
+export type DefaultTableProps = {
   data: Array<Record<string, any>>; // 테이블 바디에 들어가는 텍스트 데이터이기 때문에 모든 타입을 any로 설정
   headerList: Array<HeaderItem>;
   headerStyle?: string;

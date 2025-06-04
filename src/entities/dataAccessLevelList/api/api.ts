@@ -1,7 +1,7 @@
 import config from '@/shared/lib/config-api.json';
 import axios from 'axios';
 
-import { AddDataAccessLevelParams, AddDataAccessLevelResponse } from './type';
+import { DataAccessLevelListParams, DataAccessLevelListResponse } from './type';
 
 const env = import.meta.env.PROD;
 let { apiInfo } = config;
@@ -10,13 +10,12 @@ if (!env) {
   apiInfo = config.apiInfo_dev;
 }
 
-// POST 데이터 등급 추가
-export const postAddDataAccessLevelApi = async (
-  info: AddDataAccessLevelParams,
+// GET 회원사별 데이터등급 조회
+export const getDataAccessLevelListApi = async (
+  info: DataAccessLevelListParams,
 ) => {
-  const response = await axios.post<AddDataAccessLevelResponse>(
+  const response = await axios.get<DataAccessLevelListResponse>(
     `${apiInfo.api_url}/organizations/${info.organId}/data-access-levels`,
-    info.dataAccessLevelList,
     {
       withCredentials: true,
     },

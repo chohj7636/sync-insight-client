@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { AddDataAccessLevelList } from '@/features-rebuild/addDataLevel/api/type';
-import { useAddDataLevel } from '@/features-rebuild/addDataLevel/hooks/useAddDataLevel';
+import { AddDataAccessLevelList } from '@/features-rebuild/dataAccessLevel/api/type';
+import { useAddDataLevel } from '@/features-rebuild/dataAccessLevel/hooks/useAddDataLevel';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import ModalLayout from '@/shared/components/ModalLayout';
 import { Button } from '@/shared/components/ui/button';
