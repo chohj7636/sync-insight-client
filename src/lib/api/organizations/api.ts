@@ -33,8 +33,6 @@ import {
   getDataAccessLevelListResponse,
   getOrganizationsListParams,
   getOrganizationsListResponse,
-  registerOrganizationParams,
-  registerOrganizationResponse,
 } from './type';
 
 const env = import.meta.env.PROD;
@@ -60,31 +58,6 @@ export const getOrganizationsList = async (
         page: info.page,
         size: info.size,
       },
-      withCredentials: true,
-    },
-  );
-  return response.data;
-};
-
-// POST 회원사 생성
-export const postRegisterOrganization = async (
-  info: registerOrganizationParams,
-) => {
-  const response = await axios.post<registerOrganizationResponse>(
-    `${apiInfo.api_url}/organizations`,
-    {
-      organName: info.organName,
-      organHeadName: info.organHeadName,
-      description: info.description,
-      bizRegNo: info.bizRegNo,
-      adminName: info.adminName,
-      adminPhone: info.adminPhone,
-      adminEmail: info.adminEmail,
-      logoFile: info.logoFile,
-      bizCertFile: info.bizCertFile,
-      passbookCopyFile: info.passbookCopyFile,
-    },
-    {
       withCredentials: true,
     },
   );
