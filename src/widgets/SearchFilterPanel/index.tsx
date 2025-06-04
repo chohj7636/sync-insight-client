@@ -12,7 +12,7 @@ import { cn } from '@/shared/lib/utils';
 import { format } from 'date-fns';
 import { Calendar as CalendarIcon } from 'lucide-react';
 
-import DefaultSelect from '../DefaultSelect';
+import DefaultSelect from '../../shared/components/DefaultSelect';
 
 interface SearchFilterPanelProps {
   selectList?: {

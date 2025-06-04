@@ -6,9 +6,9 @@ import { searchChatBotListApi } from '@/lib/api/chatbot/api';
 import DefaultSelect from '@/shared/components/DefaultSelect';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import { DefaultPagination } from '@/shared/components/Pagination';
-import SearchFilterPanel from '@/shared/components/SearchFilterPanel';
 import { Button } from '@/shared/components/ui/button';
 import { LoadingSpinner } from '@/shared/components/ui/loadingSpinner';
+import SearchFilterPanel from '@/widgets/SearchFilterPanel';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 

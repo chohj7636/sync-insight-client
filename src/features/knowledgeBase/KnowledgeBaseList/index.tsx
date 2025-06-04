@@ -6,8 +6,8 @@ import { getKnowledgeBaseListApi } from '@/lib/api/knowledgeBases/api';
 import DefaultSelect from '@/shared/components/DefaultSelect';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import { DefaultPagination } from '@/shared/components/Pagination';
-import SearchFilterPanel from '@/shared/components/SearchFilterPanel';
 import { Button } from '@/shared/components/ui/button';
+import SearchFilterPanel from '@/widgets/SearchFilterPanel';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
