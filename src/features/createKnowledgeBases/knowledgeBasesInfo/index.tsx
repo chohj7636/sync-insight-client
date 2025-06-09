@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { getDirectoriesList } from '@/lib/api/datasource/api';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import { checkKnowledgeBaseNameAvailableApi } from '@/lib/api/knowledgeBases/api';
 import { DefaultTable } from '@/shared/components/DefaultTable';
-import ModalLayout from '@/shared/components/ModalLayout';
-import { DefaultPagination } from '@/shared/components/Pagination';
 import RegisterCardLayout from '@/shared/components/RegisterCardLayout';
 import TableModal from '@/shared/components/TableModal';
 import { Button } from '@/shared/components/ui/button';
-import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Input } from '@/shared/components/ui/input';
 import { Textarea } from '@/shared/components/ui/textarea';
 import { useSearchDirectoryModal } from '@/shared/hooks/modals/useSearchDirectoryModal';
@@ -48,7 +44,6 @@ const KnowledgeBasesInfo = () => {
 
   // state
   const [openSearchModal, setOpenSearchModal] = useState(false);
-  const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
 
   const HEADERLIST = [
     {
@@ -200,7 +195,6 @@ const KnowledgeBasesInfo = () => {
 
   const getSelectedDataSource = (data: DirectoryListData[]) => {
     setSelectedDataSource(data);
-    setOpenSearchDirModal(false);
   };
 
   // 데이터 소스 테이블 데이터를 zustand state에 리빌딩

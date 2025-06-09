@@ -1,6 +1,6 @@
+import config from '@/shared/lib/config-api.json';
 import axios from 'axios';
 
-import config from '../config-api.json';
 import {
   ChangeCategoryVisibleParams,
   ChangeCategoryVisibleResponse,

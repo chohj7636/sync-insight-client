@@ -37,7 +37,7 @@ const CategoryItemManage = ({
   const categoryConfigRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const { modal, modalClose } = useModal();
+  const { modal } = useModal();
   const {
     setIsOpen,
     setOrganId,

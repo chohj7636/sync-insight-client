@@ -1,7 +1,6 @@
-import { useState } from 'react';
-
 import CategoryItemManage from '@/features-rebuild/categoryItemManage/ui/CategoryItemManage';
 import CategoryUsage from '@/features-rebuild/categoryUsage/ui/CategoryUsage';
+import CategoryVisible from '@/features-rebuild/categoryVisible/ui/CategoryVisible';
 import { useChangeCategoryModal } from '@/shared/hooks/modals/useChangeCategoryModal';
 import { useSearchDirectoryModal } from '@/shared/hooks/modals/useSearchDirectoryModal';
 
@@ -40,6 +39,12 @@ const OrganizationCategoryConfig = ({
       <CategoryItemManage
         organId={organId}
         categoryEnabledState={isCategoryEnabled}
+      />
+      <div className="h-[1px] w-full bg-[#E4E7EB]" />
+      <CategoryVisible
+        isCategoryVisible={isCategoryVisible}
+        organId={organId}
+        refetchDetailInfo={refetchDetailInfo}
       />
 
       {/* modal */}

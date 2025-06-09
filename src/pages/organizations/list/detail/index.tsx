@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 
 import { OrganizationDetailResponse } from '@/entities/organizationDetail/api/type';
 import { useGetOrganDetailInfo } from '@/entities/organizationDetail/hooks/useGetOrganDetailInfo';
-import CategoryConfig from '@/features/organization/detail/CategoryConfig';
 import PageHeader from '@/shared/components/PageHeader';
 import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
 import { Button } from '@/shared/components/ui/button';
@@ -65,11 +64,6 @@ const OrganizationDetailPage = () => {
             refetchOrganDetail={() => refetchOrganDetail()}
           />
 
-          <CategoryConfig
-            organId={organId ?? ''}
-            isCategoryEnabled={organDetailData?.isCategoryEnabled ?? false}
-            isCategoryVisible={organDetailData?.isCategoryVisible ?? false}
-          />
           <OrganizationCategoryConfig
             organId={organId ?? ''}
             isCategoryEnabled={organDetailData?.isCategoryEnabled ?? false}
