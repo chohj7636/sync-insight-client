@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { DragPreviewImage, useDrag, useDrop } from 'react-dnd';
 
-import { CategoryList, PostCategoryList } from '@/lib/api/organizations/type';
+import { CategoryList } from '@/entities/categoryList/api/type';
+import { PostCategoryList } from '@/features-rebuild/categoryItemManage/api/type';
 import { Input } from '@/shared/components/ui/input';
 import FolderIcon from '@/shared/icons/icon-folder.svg';
 import { PlusIcon } from 'lucide-react';

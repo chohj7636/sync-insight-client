@@ -1,10 +1,8 @@
 import { useState } from 'react';
 
+import { CategoryList } from '@/entities/categoryList/api/type';
 import { connectDirectoryApi } from '@/lib/api/organizations/api';
-import {
-  CategoryList,
-  ConnectDirectoryParams,
-} from '@/lib/api/organizations/type';
+import { ConnectDirectoryParams } from '@/lib/api/organizations/type';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import ModalLayout from '@/shared/components/ModalLayout';

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getCategoryListApi } from '@/entities/categoryList/api/api';
 import {
   checkDirNameAvailable,
   postCreateDirectory,
 } from '@/lib/api/datasource/api';
-import { getCategoryListApi } from '@/lib/api/organizations/api';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
 import ModalLayout from '@/shared/components/ModalLayout';
 import TableModal from '@/shared/components/TableModal';

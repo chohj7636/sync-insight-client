@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getCategoryListApi } from '@/entities/categoryList/api/api';
 import ChangeCategoryModal from '@/features/organization/detail/ChangeCategoryModal';
 import {
   checkDirNameAvailable,
@@ -8,7 +9,6 @@ import {
   getDirectoryDetail,
   updateDirectoryInfo,
 } from '@/lib/api/datasource/api';
-import { getCategoryListApi } from '@/lib/api/organizations/api';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Textarea } from '@/shared/components/ui/textarea';

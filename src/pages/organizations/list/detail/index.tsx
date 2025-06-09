@@ -8,6 +8,7 @@ import PageHeader from '@/shared/components/PageHeader';
 import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
 import { Button } from '@/shared/components/ui/button';
 import { ChangeOrganInfoModal } from '@/widgets/ChangeOrganInfoModal/ChangeOrganInfoModal';
+import OrganizationCategoryConfig from '@/widgets/OrganizationCatecoryConfig';
 import OrganizationDetailInfo from '@/widgets/OrganizationDetail/OrganizationDetailInfo';
 import OrganizationDetailPanel from '@/widgets/OrganizationDetail/OrganizationDetailPanel';
 import OrganizationIndividualSettings from '@/widgets/OrganizationDetail/OrganizationIndividualSettings';
@@ -68,6 +69,12 @@ const OrganizationDetailPage = () => {
             organId={organId ?? ''}
             isCategoryEnabled={organDetailData?.isCategoryEnabled ?? false}
             isCategoryVisible={organDetailData?.isCategoryVisible ?? false}
+          />
+          <OrganizationCategoryConfig
+            organId={organId ?? ''}
+            isCategoryEnabled={organDetailData?.isCategoryEnabled ?? false}
+            isCategoryVisible={organDetailData?.isCategoryVisible ?? false}
+            refetchDetailInfo={() => refetchOrganDetail()}
           />
         </div>
       </div>

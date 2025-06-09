@@ -1,25 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
-import { DirectoryListData } from '@/lib/api/datasource/type';
+import { getCategoryListApi } from '@/entities/categoryList/api/api';
+import { CategoryList } from '@/entities/categoryList/api/type';
 import {
-  changeCategoryEnabledApi,
-  changeCategoryVisibleApi,
-  connectDirectoryApi,
   deleteCategoryApi,
-  getCategoryDirectoryListApi,
-  getCategoryListApi,
   postCategoryListUpdateApi,
-} from '@/lib/api/organizations/api';
+} from '@/features-rebuild/categoryItemManage/api/api';
 import {
-  CategoryList,
-  ChangeCategoryEnabledParams,
-  ChangeCategoryVisibleParams,
-  ConnectDirectoryParams,
   DeleteCategoryParams,
   PostCategoryList,
   PostCategoryListUpdateParams,
+} from '@/features-rebuild/categoryItemManage/api/type';
+import { changeCategoryEnabledApi } from '@/features-rebuild/categoryUsage/api/api';
+import { ChangeCategoryEnabledParams } from '@/features-rebuild/categoryUsage/api/type';
+import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
+import { DirectoryListData } from '@/lib/api/datasource/type';
+import {
+  changeCategoryVisibleApi,
+  connectDirectoryApi,
+  getCategoryDirectoryListApi,
+} from '@/lib/api/organizations/api';
+import {
+  ChangeCategoryVisibleParams,
+  ConnectDirectoryParams,
 } from '@/lib/api/organizations/type';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
 import { DefaultTable } from '@/shared/components/DefaultTable';
@@ -597,58 +601,6 @@ const CategoryConfig = ({
       <p className="text-xl font-bold">카테고리 설정</p>
 
       <div className="h-[1px] w-full bg-[#E4E7EB]" />
-
-      <p className="text-lg font-bold">카테고리 사용 여부</p>
-      <div className="flex gap-5">
-        <p className="text-[15px] font-medium w-[116px] h-5 flex items-center">
-          카테고리 사용
-        </p>
-        <div className="flex flex-col gap-4">
-          <div className="h-5 flex items-center gap-5">
-            <div className="flex items-center gap-1">
-              <div
-                className="cursor-pointer flex"
-                onClick={() => {
-                  changeCategoryEnabled({
-                    organId,
-                    isCategoryEnabled: true,
-                  });
-                }}
-              >
-                <img
-                  src={
-                    categoryEnabledState ? ActiveRadioIcon : InactiveRadioIcon
-                  }
-                  alt=""
-                />
-              </div>
-              <p className="text-[15px] font-medium">활성화</p>
-            </div>
-            <div className="flex items-center gap-1">
-              <div
-                className="cursor-pointer flex"
-                onClick={() => {
-                  changeCategoryEnabled({
-                    organId,
-                    isCategoryEnabled: false,
-                  });
-                }}
-              >
-                <img
-                  src={
-                    categoryEnabledState ? InactiveRadioIcon : ActiveRadioIcon
-                  }
-                  alt=""
-                />
-              </div>
-              <p className="text-[15px] font-medium">비활성화</p>
-            </div>
-          </div>
-          <p className="text-sm text-[#4C5667]">
-            카테고리를 메타데이터로 설정해 프롬프트를 강화합니다.
-          </p>
-        </div>
-      </div>
 
       <div className="h-[1px] w-full bg-[#E4E7EB]" />
 
