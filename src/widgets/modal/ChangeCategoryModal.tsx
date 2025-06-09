@@ -1,37 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { CategoryList } from '@/entities/categoryList/api/type';
 import { connectDirectoryApi } from '@/features-rebuild/categoryItemManage/api/api';
 import { ConnectDirectoryParams } from '@/features-rebuild/categoryItemManage/api/type';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import ModalLayout from '@/shared/components/ModalLayout';
+import { useChangeCategoryModal } from '@/shared/hooks/modals/useChangeCategoryModal';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-export interface ChangeCategoryModalProps {
-  organId: string;
-  targetDirList: {
-    id: string;
-    dirName: string;
-    categoryBreadcrumb: string;
-  }[];
-  categoryList: CategoryList[];
-  categoryId?: string;
-  categoryBreadcrumb?: string;
-  closeModal: () => void;
-  refetch?: () => void;
-}
+const ChangeCategoryModal = () => {
+  // zustand
+  const {
+    isOpen,
+    organId,
+    targetDirList,
+    categoryList,
+    categoryId,
+    categoryBreadcrumb,
+    refetch,
+    setIsOpen,
+    resetChangeCategoryModal,
+  } = useChangeCategoryModal();
 
-const ChangeCategoryModal = ({
-  organId,
-  targetDirList,
-  categoryList,
-  categoryId,
-  categoryBreadcrumb,
-  closeModal,
-  refetch,
-}: ChangeCategoryModalProps) => {
+  useEffect(() => {
+    return () => resetChangeCategoryModal();
+  }, [resetChangeCategoryModal]);
+
+  // state
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>(
     categoryId ?? '',
   );
@@ -42,8 +38,8 @@ const ChangeCategoryModal = ({
   const { mutate: postChangeCategory } = useMutation({
     mutationFn: (info: ConnectDirectoryParams) => connectDirectoryApi(info),
     onSuccess: () => {
-      closeModal();
-      refetch?.();
+      setIsOpen(false);
+      refetch();
       toast.success('카테고리가 변경되었습니다.', {
         duration: 2000,
         position: 'top-center',
@@ -74,10 +70,13 @@ const ChangeCategoryModal = ({
     });
   };
 
+  if (!isOpen) {
+    return null;
+  }
   return (
     <ModalLayout
       modalWidth="w-[580px]"
-      closeModal={closeModal}
+      closeModal={() => setIsOpen(false)}
       clickConfirmButton={confirmButton}
     >
       <div className="flex flex-col gap-5 w-full mb-9">

@@ -4,12 +4,17 @@ import { useLocation } from 'react-router-dom';
 import { CategoryList } from '@/entities/categoryList/api/type';
 import { useCategoryList } from '@/entities/categoryList/hooks/useCategoryList';
 import { useSearchDirInCategory } from '@/entities/directoryListInCategory/hooks/useSearchDirInCategory';
-import { ChangeCategoryModalProps } from '@/features/organization/detail/ChangeCategoryModal';
+import { DirectoryListData } from '@/lib/api/datasource/type';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import { Button } from '@/shared/components/ui/button';
 import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Input } from '@/shared/components/ui/input';
+import {
+  targetDirListState,
+  useChangeCategoryModal,
+} from '@/shared/hooks/modals/useChangeCategoryModal';
+import { useSearchDirectoryModal } from '@/shared/hooks/modals/useSearchDirectoryModal';
 import useModal from '@/shared/hooks/useModal';
 import FolderIcon from '@/shared/icons/icon-folder.svg';
 import { format } from 'date-fns';
@@ -31,24 +36,39 @@ const CategoryItemManage = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const categoryConfigRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+
   const { modal, modalClose } = useModal();
+  const {
+    setIsOpen,
+    setOrganId,
+    setTargetDirList,
+    setCategoryList: setCategoryListModal,
+    setRefetch,
+  } = useChangeCategoryModal();
+
+  const {
+    setIsOpen: setIsOpenSearchDirModal,
+    setTitle,
+    setSelectedOrganId,
+    setType,
+    setSelectedDataSource,
+    setClickConfirmButton,
+  } = useSearchDirectoryModal();
   // state
   const [categoryList, setCategoryList] = useState<CategoryList[]>([]);
   const [addCategoryInfo, setAddCategoryInfo] = useState({
     name: '',
     id: '',
   });
-  const [checkedFiles, setCheckedFiles] = useState<
-    ChangeCategoryModalProps['targetDirList']
-  >([]);
+  const [checkedFiles, setCheckedFiles] = useState<targetDirListState[]>([]);
   const [allChecked, setAllChecked] = useState(false);
   const [currentCategoryIds, setCurrentCategoryIds] = useState<string>(''); // id depth를 문자열로 출력
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
-  const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
-  const [openChangeCategoryModal, setOpenChangeCategoryModal] = useState(false);
-  const [onlyOneChangeCategory, setOnlyOneChangeCategory] = useState<
-    ChangeCategoryModalProps['targetDirList']
-  >([]);
+  // const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
+  // const [openChangeCategoryModal, setOpenChangeCategoryModal] = useState(false);
+  // const [onlyOneChangeCategory, setOnlyOneChangeCategory] = useState<
+  //   ChangeCategoryModalProps['targetDirList']
+  // >([]);
 
   // category 조회 query
   const { categoryListResponseData, refetchCategoryList } = useCategoryList({
@@ -58,12 +78,16 @@ const CategoryItemManage = ({
   const { categoryDirectoryList, refetchCategoryDirectoryList } =
     useSearchDirInCategory(organId, currentCategoryIds);
   // category 추가, 삭제
-  const { postCategoryListUpdate, deleteCategory, disconnectCategory } =
-    useCategoryManage({
-      setAddCategoryInfo,
-      refetchCategoryList,
-      refetchCategoryDirectoryList,
-    });
+  const {
+    postCategoryListUpdate,
+    deleteCategory,
+    disconnectCategory,
+    postConnectDirectory,
+  } = useCategoryManage({
+    setAddCategoryInfo,
+    refetchCategoryList,
+    refetchCategoryDirectoryList,
+  });
 
   useEffect(() => {
     if (currentCategoryIds) {
@@ -143,6 +167,20 @@ const CategoryItemManage = ({
       categoryList: updatedList,
     });
   };
+
+  useEffect(() => {
+    if (allChecked) {
+      setCheckedFiles(
+        categoryDirectoryList?.map((category) => ({
+          id: category['id'],
+          dirName: category['dirName'],
+          categoryBreadcrumb: category['categoryBreadcrumb'],
+        })) || [],
+      );
+    } else {
+      setCheckedFiles([]);
+    }
+  }, [allChecked, categoryDirectoryList]);
 
   const clickCategory = (categoryIds: string, selectedId: string) => {
     setCurrentCategoryIds(categoryIds);
@@ -341,6 +379,26 @@ const CategoryItemManage = ({
     });
   };
 
+  const openChangeCategoryModal = (targetList: targetDirListState[]) => {
+    setIsOpen(true);
+    setOrganId(organId);
+    setTargetDirList(targetList);
+    setCategoryListModal(categoryList);
+    setRefetch(() => {
+      refetchCategoryList();
+      refetchCategoryDirectoryList();
+    });
+  };
+
+  const connectDirectory = (dirList: DirectoryListData[]) => {
+    const dirIds = dirList.map((dir) => dir.dirId);
+    postConnectDirectory({
+      organId,
+      categoryId: selectedCategoryId,
+      directoryIds: dirIds,
+    });
+  };
+
   const HEADERLIST = [
     {
       label: '',
@@ -387,7 +445,7 @@ const CategoryItemManage = ({
             <Button
               className="h-5 border border-[#4C5667] px-2 text-sm text-[#4C5667]"
               onClick={() => {
-                setOnlyOneChangeCategory([
+                openChangeCategoryModal([
                   {
                     id: dataItem['id'],
                     dirName: dataItem['dirName'],
@@ -500,7 +558,7 @@ const CategoryItemManage = ({
           <div className="flex justify-end gap-2 h-7">
             <Button
               className="px-3 rounded-sm bg-white border-[#E4E7EB] font-normal"
-              onClick={() => setOpenChangeCategoryModal(true)}
+              onClick={() => openChangeCategoryModal(checkedFiles)}
             >
               카테고리 변경
             </Button>
@@ -508,7 +566,12 @@ const CategoryItemManage = ({
               className="px-3 rounded-sm bg-[#667183] text-white font-normal"
               onClick={() => {
                 if (currentCategoryIds) {
-                  setOpenSearchDirModal(true);
+                  setIsOpenSearchDirModal(true);
+                  setTitle('디렉토리 찾기');
+                  setSelectedOrganId(organId);
+                  setType('CATEGORY');
+                  setSelectedDataSource([]);
+                  setClickConfirmButton(connectDirectory);
                 } else {
                   toast.error('카테고리를 선택해주세요.', {
                     duration: 2000,

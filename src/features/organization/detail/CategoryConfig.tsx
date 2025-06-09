@@ -17,7 +17,6 @@ import {
 } from '@/features-rebuild/categoryItemManage/api/type';
 import { changeCategoryEnabledApi } from '@/features-rebuild/categoryUsage/api/api';
 import { ChangeCategoryEnabledParams } from '@/features-rebuild/categoryUsage/api/type';
-import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import { changeCategoryVisibleApi } from '@/lib/api/organizations/api';
 import { ChangeCategoryVisibleParams } from '@/lib/api/organizations/type';
@@ -26,6 +25,7 @@ import { DefaultTable } from '@/shared/components/DefaultTable';
 import { Button } from '@/shared/components/ui/button';
 import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Input } from '@/shared/components/ui/input';
+import { targetDirListState } from '@/shared/hooks/modals/useChangeCategoryModal';
 import useModal from '@/shared/hooks/useModal';
 import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import FolderIcon from '@/shared/icons/icon-folder.svg';
@@ -34,10 +34,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { PlusIcon } from 'lucide-react';
 import { toast } from 'sonner';
-
-import ChangeCategoryModal, {
-  ChangeCategoryModalProps,
-} from './ChangeCategoryModal';
 
 interface CategoryConfigProps {
   organId: string;
@@ -61,9 +57,7 @@ const CategoryConfig = ({
     name: '',
     id: '',
   });
-  const [checkedFiles, setCheckedFiles] = useState<
-    ChangeCategoryModalProps['targetDirList']
-  >([]);
+  const [checkedFiles, setCheckedFiles] = useState<targetDirListState[]>([]);
   const [allChecked, setAllChecked] = useState(false);
   const [currentCategoryIds, setCurrentCategoryIds] = useState<string>(''); // id depth를 문자열로 출력
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
@@ -74,7 +68,7 @@ const CategoryConfig = ({
   const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
   const [openChangeCategoryModal, setOpenChangeCategoryModal] = useState(false);
   const [onlyOneChangeCategory, setOnlyOneChangeCategory] = useState<
-    ChangeCategoryModalProps['targetDirList']
+    targetDirListState[]
   >([]);
 
   // 디렉토리 생성 > 카테고리 선택 모달에서 라우팅 된 경우 카테고리 영역으로 스크롤
@@ -704,7 +698,7 @@ const CategoryConfig = ({
         </div>
       </div>
       {/* modal */}
-      {openSearchDirModal && (
+      {/* {openSearchDirModal && (
         <SearchDirModal
           title="디렉토리 찾기"
           selectedOrgaId={organId}
@@ -713,8 +707,8 @@ const CategoryConfig = ({
           closeModal={() => setOpenSearchDirModal(false)}
           clickConfirmButton={connectDirectory}
         />
-      )}
-      {openChangeCategoryModal && (
+      )} */}
+      {/* {openChangeCategoryModal && (
         <ChangeCategoryModal
           organId={organId}
           targetDirList={checkedFiles}
@@ -737,7 +731,7 @@ const CategoryConfig = ({
           }}
           closeModal={() => setOnlyOneChangeCategory([])}
         />
-      )}
+      )} */}
 
       <div className="h-[1px] w-full bg-[#E4E7EB]" />
 

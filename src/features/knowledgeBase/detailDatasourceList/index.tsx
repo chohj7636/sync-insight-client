@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
 import { DirectoryListData } from '@/lib/api/datasource/type';
 import {
   addDataSourceApi,
@@ -16,6 +15,8 @@ import ModalLayout from '@/shared/components/ModalLayout';
 import { Button } from '@/shared/components/ui/button';
 import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Textarea } from '@/shared/components/ui/textarea';
+import { useSearchDirectoryModal } from '@/shared/hooks/modals/useSearchDirectoryModal';
+import { SearchDirModal } from '@/widgets/modal/SearchDirModal';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
@@ -33,6 +34,15 @@ const VectorDBDataSourceList = ({
   organInfo,
 }: VectorDBDataSourceListProps) => {
   const navigate = useNavigate();
+  const {
+    isOpen: isOpenSearchDirModal,
+    setIsOpen: setIsOpenSearchDirModal,
+    setTitle,
+    setSelectedOrganId,
+    setType,
+    setSelectedDataSource,
+    setClickConfirmButton,
+  } = useSearchDirectoryModal();
 
   // state
   const [checkedFiles, setCheckedFiles] = useState<number[]>([]);
@@ -40,7 +50,7 @@ const VectorDBDataSourceList = ({
   const [openChangeTagModal, setOpenChangeTagModal] = useState(false);
   const [dataSourceInfoForChangeTag, setDataSourceInfoForChangeTag] =
     useState<ChangeTagModalProps['dataSourceInfo']>(null);
-  const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
+  // const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
   // 디렉토리 추가 모달에서 선택한 디렉토리 목록
   // const [selectedDirList, setSelectedDirList] = useState<DirectoryListData[]>(
   //   [],
@@ -104,7 +114,7 @@ const VectorDBDataSourceList = ({
         position: 'top-center',
       });
       refetch();
-      setOpenSearchDirModal(false);
+      setIsOpenSearchDirModal(false);
     },
     onError: () => {
       toast('데이터 소스 추가 실패', {
@@ -246,7 +256,14 @@ const VectorDBDataSourceList = ({
         </Button>
         <Button
           className="h-[28px] border-none bg-[#0066C3] px-3 text-white"
-          onClick={() => setOpenSearchDirModal(true)}
+          onClick={() => {
+            setIsOpenSearchDirModal(true);
+            setTitle('디렉토리 찾기');
+            setSelectedOrganId(organInfo.organId);
+            setType('DIRECTORY');
+            setSelectedDataSource([]);
+            setClickConfirmButton(handleAddDir);
+          }}
         >
           디렉토리 추가
         </Button>
@@ -277,7 +294,7 @@ const VectorDBDataSourceList = ({
           refetchDataSourceList={refetch}
         />
       )}
-      {openSearchDirModal && (
+      {/* {openSearchDirModal && (
         <SearchDirModal
           title="디렉토리 찾기"
           selectedOrgaId={organInfo.organId}
@@ -286,7 +303,8 @@ const VectorDBDataSourceList = ({
           closeModal={() => setOpenSearchDirModal(false)}
           clickConfirmButton={handleAddDir}
         />
-      )}
+      )} */}
+      {isOpenSearchDirModal && <SearchDirModal />}
     </div>
   );
 };

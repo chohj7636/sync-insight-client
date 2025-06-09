@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getCategoryListApi } from '@/entities/categoryList/api/api';
-import ChangeCategoryModal from '@/features/organization/detail/ChangeCategoryModal';
 import {
   checkDirNameAvailable,
   deleteDirectory,
@@ -12,9 +11,11 @@ import {
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Textarea } from '@/shared/components/ui/textarea';
+import { useChangeCategoryModal } from '@/shared/hooks/modals/useChangeCategoryModal';
 import useModal from '@/shared/hooks/useModal';
 import ActiveRadioIcon from '@/shared/icons/icon-activeRadio.svg';
 import InactiveRadioIcon from '@/shared/icons/icon-inactiveRadio.svg';
+import ChangeCategoryModal from '@/widgets/modal/ChangeCategoryModal';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { toast } from 'sonner';
@@ -48,6 +49,16 @@ const DirectoryInfoPanel = ({
 }: DirectoryInfoPanelProps) => {
   const navigate = useNavigate();
   const { modal, modalClose } = useModal();
+  const {
+    isOpen,
+    setIsOpen,
+    setOrganId,
+    setTargetDirList,
+    setCategoryList,
+    setCategoryId,
+    setCategoryBreadcrumb,
+    setRefetch,
+  } = useChangeCategoryModal();
 
   // 카테고리 조회 query
   const { data: categoryListResponseData } = useQuery({
@@ -91,7 +102,6 @@ const DirectoryInfoPanel = ({
   // state
   const [isModifyDirectoryInfoModalOpen, setIsModifyDirectoryInfoModalOpen] =
     useState(false);
-  const [openChangeCategoryModal, setOpenChangeCategoryModal] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -182,30 +192,28 @@ const DirectoryInfoPanel = ({
               <p className="text-[15px]">{categoryBreadcrumb}</p>
               <Button
                 className="border-[#0066C3] text-[#0066C3] px-3 h-7"
-                onClick={() => setOpenChangeCategoryModal(true)}
+                onClick={() => {
+                  setIsOpen(true);
+                  setOrganId(organId);
+                  setTargetDirList([
+                    {
+                      id: dirId,
+                      dirName: dirName,
+                      categoryBreadcrumb: categoryBreadcrumb,
+                    },
+                  ]);
+                  setCategoryList(categoryListResponseData ?? []);
+                  setCategoryId(categoryId);
+                  setCategoryBreadcrumb(categoryBreadcrumb);
+                  setRefetch(() => refetchDirDetail());
+                }}
               >
                 카테고리 변경
               </Button>
             </div>
           </div>
         </div>
-        {openChangeCategoryModal && (
-          <ChangeCategoryModal
-            organId={organId}
-            targetDirList={[
-              {
-                id: dirId,
-                dirName: dirName,
-                categoryBreadcrumb: categoryBreadcrumb,
-              },
-            ]}
-            categoryList={categoryListResponseData ?? []}
-            categoryId={categoryId}
-            categoryBreadcrumb={categoryBreadcrumb}
-            refetch={() => refetchDirDetail()}
-            closeModal={() => setOpenChangeCategoryModal(false)}
-          />
-        )}
+        {isOpen && <ChangeCategoryModal />}
 
         <div className="flex w-full items-center">
           <div className="flex w-1/2 items-center gap-6">

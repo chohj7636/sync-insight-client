@@ -1,5 +1,12 @@
+import { useState } from 'react';
+
 import CategoryItemManage from '@/features-rebuild/categoryItemManage/ui/CategoryItemManage';
 import CategoryUsage from '@/features-rebuild/categoryUsage/ui/CategoryUsage';
+import { useChangeCategoryModal } from '@/shared/hooks/modals/useChangeCategoryModal';
+import { useSearchDirectoryModal } from '@/shared/hooks/modals/useSearchDirectoryModal';
+
+import ChangeCategoryModal from '../modal/ChangeCategoryModal';
+import { SearchDirModal } from '../modal/SearchDirModal';
 
 interface OrganizationCategoryConfigProps {
   organId: string;
@@ -14,6 +21,10 @@ const OrganizationCategoryConfig = ({
   isCategoryVisible,
   refetchDetailInfo,
 }: OrganizationCategoryConfigProps) => {
+  const { isOpen: isOpenChangeCategoryModal } = useChangeCategoryModal();
+  const { isOpen: isOpenSearchDirModal } = useSearchDirectoryModal();
+  // state
+
   return (
     <div className="flex w-full flex-col gap-4 rounded-md border border-[#D0D5DD] px-7 py-5">
       <p className="text-xl font-bold">카테고리 설정</p>
@@ -30,6 +41,10 @@ const OrganizationCategoryConfig = ({
         organId={organId}
         categoryEnabledState={isCategoryEnabled}
       />
+
+      {/* modal */}
+      {isOpenChangeCategoryModal && <ChangeCategoryModal />}
+      {isOpenSearchDirModal && <SearchDirModal />}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { useSearchDirectoryModal } from '@/shared/hooks/modals/useSearchDirectoryModal';
 import useModal from '@/shared/hooks/useModal';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
@@ -30,6 +31,7 @@ export const useCategoryManage = ({
   refetchCategoryDirectoryList,
 }: UseCategoryManageProps) => {
   const { modalClose } = useModal();
+  const { setIsOpen } = useSearchDirectoryModal();
 
   // 카테고리 리스트 업데이트 query
   const { mutate: postCategoryListUpdate } = useMutation({
@@ -63,24 +65,24 @@ export const useCategoryManage = ({
   });
 
   // 카테고리에 디렉토리 연결 query
-  // const { mutate: postConnectDirectory } = useMutation({
-  //   mutationFn: (info: ConnectDirectoryParams) => connectDirectoryApi(info),
-  //   onSuccess: () => {
-  //     toast.success('디렉토리가 연결되었습니다.', {
-  //       duration: 2000,
-  //       position: 'top-center',
-  //     });
-  //     refetchCategoryDirectoryList();
-  //     refetchCategoryList();
-  //     setOpenSearchDirModal(false);
-  //   },
-  //   onError: () => {
-  //     toast.error('카테고리에 디렉토리 연결 실패', {
-  //       duration: 2000,
-  //       position: 'top-center',
-  //     });
-  //   },
-  // });
+  const { mutate: postConnectDirectory } = useMutation({
+    mutationFn: (info: ConnectDirectoryParams) => connectDirectoryApi(info),
+    onSuccess: () => {
+      toast.success('디렉토리가 연결되었습니다.', {
+        duration: 2000,
+        position: 'top-center',
+      });
+      refetchCategoryDirectoryList();
+      refetchCategoryList();
+      setIsOpen(false);
+    },
+    onError: () => {
+      toast.error('카테고리에 디렉토리 연결 실패', {
+        duration: 2000,
+        position: 'top-center',
+      });
+    },
+  });
 
   // 카테고리 해제 query
   const { mutate: disconnectCategory } = useMutation({
@@ -101,5 +103,10 @@ export const useCategoryManage = ({
     },
   });
 
-  return { postCategoryListUpdate, deleteCategory, disconnectCategory };
+  return {
+    postCategoryListUpdate,
+    deleteCategory,
+    disconnectCategory,
+    postConnectDirectory,
+  };
 };
