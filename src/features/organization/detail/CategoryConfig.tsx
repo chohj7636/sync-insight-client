@@ -3,11 +3,14 @@ import { useLocation } from 'react-router-dom';
 
 import { getCategoryListApi } from '@/entities/categoryList/api/api';
 import { CategoryList } from '@/entities/categoryList/api/type';
+import { getCategoryDirectoryListApi } from '@/entities/directoryListInCategory/api/api';
 import {
+  connectDirectoryApi,
   deleteCategoryApi,
   postCategoryListUpdateApi,
 } from '@/features-rebuild/categoryItemManage/api/api';
 import {
+  ConnectDirectoryParams,
   DeleteCategoryParams,
   PostCategoryList,
   PostCategoryListUpdateParams,
@@ -16,15 +19,8 @@ import { changeCategoryEnabledApi } from '@/features-rebuild/categoryUsage/api/a
 import { ChangeCategoryEnabledParams } from '@/features-rebuild/categoryUsage/api/type';
 import { SearchDirModal } from '@/features/createKnowledgeBases/knowledgeBasesInfo';
 import { DirectoryListData } from '@/lib/api/datasource/type';
-import {
-  changeCategoryVisibleApi,
-  connectDirectoryApi,
-  getCategoryDirectoryListApi,
-} from '@/lib/api/organizations/api';
-import {
-  ChangeCategoryVisibleParams,
-  ConnectDirectoryParams,
-} from '@/lib/api/organizations/type';
+import { changeCategoryVisibleApi } from '@/lib/api/organizations/api';
+import { ChangeCategoryVisibleParams } from '@/lib/api/organizations/type';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
 import { DefaultTable } from '@/shared/components/DefaultTable';
 import { Button } from '@/shared/components/ui/button';

@@ -2,6 +2,8 @@ import config from '@/shared/lib/config-api.json';
 import axios from 'axios';
 
 import {
+  ConnectDirectoryParams,
+  ConnectDirectoryResponse,
   DeleteCategoryParams,
   DeleteCategoryResponse,
   PostCategoryListUpdateParams,
@@ -37,6 +39,21 @@ export const deleteCategoryApi = async (info: DeleteCategoryParams) => {
       data: {
         categoryId: info.categoryId,
       },
+      withCredentials: true,
+    },
+  );
+  return response.data;
+};
+
+// POST 카테고리에 디렉토리 연결
+export const connectDirectoryApi = async (info: ConnectDirectoryParams) => {
+  const response = await axios.post<ConnectDirectoryResponse>(
+    `${apiInfo.api_url}/organizations/${info.organId}/categories/directories`,
+    {
+      directoryIds: info.directoryIds,
+      categoryId: info.categoryId,
+    },
+    {
       withCredentials: true,
     },
   );

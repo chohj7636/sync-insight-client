@@ -26,3 +26,16 @@ export interface DeleteCategoryResponse {
   message: string;
   payload: string;
 }
+
+// POST 디렉토리의 카테고리 업데이트 (카테고리 변경, 디렉토리 연결, 해제)
+export interface ConnectDirectoryParams {
+  organId: string;
+  categoryId: string | null;
+  directoryIds: string[];
+}
+
+export interface ConnectDirectoryResponse {
+  code: string;
+  message: string;
+  payload: string;
+}

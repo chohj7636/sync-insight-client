@@ -2,8 +2,13 @@ import useModal from '@/shared/hooks/useModal';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { deleteCategoryApi, postCategoryListUpdateApi } from '../api/api';
 import {
+  connectDirectoryApi,
+  deleteCategoryApi,
+  postCategoryListUpdateApi,
+} from '../api/api';
+import {
+  ConnectDirectoryParams,
   DeleteCategoryParams,
   PostCategoryListUpdateParams,
 } from '../api/type';
@@ -16,11 +21,13 @@ interface AddCategoryInfo {
 interface UseCategoryManageProps {
   setAddCategoryInfo: (info: AddCategoryInfo) => void;
   refetchCategoryList: () => void;
+  refetchCategoryDirectoryList: () => void;
 }
 
 export const useCategoryManage = ({
   setAddCategoryInfo,
   refetchCategoryList,
+  refetchCategoryDirectoryList,
 }: UseCategoryManageProps) => {
   const { modalClose } = useModal();
 
@@ -55,5 +62,44 @@ export const useCategoryManage = ({
     },
   });
 
-  return { postCategoryListUpdate, deleteCategory };
+  // 카테고리에 디렉토리 연결 query
+  // const { mutate: postConnectDirectory } = useMutation({
+  //   mutationFn: (info: ConnectDirectoryParams) => connectDirectoryApi(info),
+  //   onSuccess: () => {
+  //     toast.success('디렉토리가 연결되었습니다.', {
+  //       duration: 2000,
+  //       position: 'top-center',
+  //     });
+  //     refetchCategoryDirectoryList();
+  //     refetchCategoryList();
+  //     setOpenSearchDirModal(false);
+  //   },
+  //   onError: () => {
+  //     toast.error('카테고리에 디렉토리 연결 실패', {
+  //       duration: 2000,
+  //       position: 'top-center',
+  //     });
+  //   },
+  // });
+
+  // 카테고리 해제 query
+  const { mutate: disconnectCategory } = useMutation({
+    mutationFn: (info: ConnectDirectoryParams) => connectDirectoryApi(info),
+    onSuccess: () => {
+      refetchCategoryList();
+      refetchCategoryDirectoryList();
+      toast.success('카테고리가 해제되었습니다.', {
+        duration: 2000,
+        position: 'top-center',
+      });
+    },
+    onError: () => {
+      toast.error('카테고리 해제 실패', {
+        duration: 2000,
+        position: 'top-center',
+      });
+    },
+  });
+
+  return { postCategoryListUpdate, deleteCategory, disconnectCategory };
 };

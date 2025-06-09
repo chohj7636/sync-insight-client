@@ -3,11 +3,16 @@ import { useLocation } from 'react-router-dom';
 
 import { CategoryList } from '@/entities/categoryList/api/type';
 import { useCategoryList } from '@/entities/categoryList/hooks/useCategoryList';
+import { useSearchDirInCategory } from '@/entities/directoryListInCategory/hooks/useSearchDirInCategory';
+import { ChangeCategoryModalProps } from '@/features/organization/detail/ChangeCategoryModal';
 import { CategoryTreeNode } from '@/shared/components/CatetoryTreeNode';
+import { DefaultTable } from '@/shared/components/DefaultTable';
 import { Button } from '@/shared/components/ui/button';
+import { Checkbox } from '@/shared/components/ui/checkbox';
 import { Input } from '@/shared/components/ui/input';
 import useModal from '@/shared/hooks/useModal';
 import FolderIcon from '@/shared/icons/icon-folder.svg';
+import { format } from 'date-fns';
 import { PlusIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -33,28 +38,38 @@ const CategoryItemManage = ({
     name: '',
     id: '',
   });
-  // const [checkedFiles, setCheckedFiles] = useState<
-  //   ChangeCategoryModalProps['targetDirList']
-  // >([]);
-  // const [allChecked, setAllChecked] = useState(false);
+  const [checkedFiles, setCheckedFiles] = useState<
+    ChangeCategoryModalProps['targetDirList']
+  >([]);
+  const [allChecked, setAllChecked] = useState(false);
   const [currentCategoryIds, setCurrentCategoryIds] = useState<string>(''); // id depth를 문자열로 출력
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
-  // const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
-  // const [openChangeCategoryModal, setOpenChangeCategoryModal] = useState(false);
-  // const [onlyOneChangeCategory, setOnlyOneChangeCategory] = useState<
-  //   ChangeCategoryModalProps['targetDirList']
-  // >([]);
+  const [openSearchDirModal, setOpenSearchDirModal] = useState(false);
+  const [openChangeCategoryModal, setOpenChangeCategoryModal] = useState(false);
+  const [onlyOneChangeCategory, setOnlyOneChangeCategory] = useState<
+    ChangeCategoryModalProps['targetDirList']
+  >([]);
 
   // category 조회 query
   const { categoryListResponseData, refetchCategoryList } = useCategoryList({
     organId,
   });
-
+  // 카테고리 소속 디렉토리 검색 query
+  const { categoryDirectoryList, refetchCategoryDirectoryList } =
+    useSearchDirInCategory(organId, currentCategoryIds);
   // category 추가, 삭제
-  const { postCategoryListUpdate, deleteCategory } = useCategoryManage({
-    setAddCategoryInfo,
-    refetchCategoryList,
-  });
+  const { postCategoryListUpdate, deleteCategory, disconnectCategory } =
+    useCategoryManage({
+      setAddCategoryInfo,
+      refetchCategoryList,
+      refetchCategoryDirectoryList,
+    });
+
+  useEffect(() => {
+    if (currentCategoryIds) {
+      refetchCategoryDirectoryList();
+    }
+  }, [currentCategoryIds, refetchCategoryDirectoryList]);
 
   // 디렉토리 생성 > 카테고리 선택 모달에서 라우팅 된 경우 카테고리 영역으로 스크롤
   useEffect(() => {
@@ -326,6 +341,87 @@ const CategoryItemManage = ({
     });
   };
 
+  const HEADERLIST = [
+    {
+      label: '',
+      key: 'select',
+      render: (_: string, dataItem: Record<string, string>) => (
+        <Checkbox
+          checked={checkedFiles.some((file) => file.id === dataItem['id'])}
+          onCheckedChange={() =>
+            setCheckedFiles((prev) =>
+              prev.some((file) => file.id === dataItem['id'])
+                ? prev.filter((file) => file.id !== dataItem['id'])
+                : [
+                    ...prev,
+                    {
+                      id: dataItem['id'],
+                      dirName: dataItem['dirName'],
+                      categoryBreadcrumb: dataItem['categoryBreadcrumb'],
+                    },
+                  ],
+            )
+          }
+        />
+      ),
+    },
+    { label: '디렉토리명', key: 'dirName' },
+    {
+      label: '카테고리',
+      key: 'categoryBreadcrumb',
+    },
+    {
+      label: '디렉토리 생성일',
+      key: 'createdAt',
+      render: (value: string) => format(new Date(value), 'yyyy-MM-dd HH:mm:ss'),
+    },
+    { label: '생성자', key: 'createdBy' },
+    {
+      label: '관리',
+      key: 'management',
+      children: [
+        {
+          key: 'id',
+          style: 'w-[110px]',
+          render: (_: string, dataItem: Record<string, string>) => (
+            <Button
+              className="h-5 border border-[#4C5667] px-2 text-sm text-[#4C5667]"
+              onClick={() => {
+                setOnlyOneChangeCategory([
+                  {
+                    id: dataItem['id'],
+                    dirName: dataItem['dirName'],
+                    categoryBreadcrumb: dataItem['categoryBreadcrumb'],
+                  },
+                ]);
+              }}
+            >
+              카테고리 변경
+            </Button>
+          ),
+        },
+        {
+          key: 'id',
+          style: 'w-[60px]',
+          render: (_: string, dataItem: Record<string, string>) => (
+            <Button
+              className="h-5 border border-[#E60020] px-2 text-sm text-[#E60020]"
+              onClick={() => {
+                disconnectCategory({
+                  directoryIds: [dataItem['id']],
+                  categoryId: null,
+                  organId,
+                });
+              }}
+            >
+              해제
+            </Button>
+          ),
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="flex w-full flex-col gap-4">
       <p className="text-lg font-bold">카테고리 항목 관리</p>
@@ -400,7 +496,7 @@ const CategoryItemManage = ({
         </div>
 
         {/* table */}
-        {/* <div className="flex-1 flex flex-col gap-5">
+        <div className="flex-1 flex flex-col gap-5">
           <div className="flex justify-end gap-2 h-7">
             <Button
               className="px-3 rounded-sm bg-white border-[#E4E7EB] font-normal"
@@ -429,7 +525,7 @@ const CategoryItemManage = ({
             data={categoryDirectoryList ?? []}
             onClickAllCheckbox={() => setAllChecked((prev) => !prev)}
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );
