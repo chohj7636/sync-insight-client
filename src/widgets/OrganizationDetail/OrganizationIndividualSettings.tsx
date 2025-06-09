@@ -7,8 +7,8 @@ import useChangeOrganInfo from '@/features-rebuild/changeOrgainInfo/hooks/useCha
 import DataAccessLevelConfig from '@/features-rebuild/dataAccessLevel/ui/DataAccessLevelConfig';
 import { Input } from '@/shared/components/ui/input';
 
-import { AddDataAccessLevelModal } from '../AddDataLevelModal';
 import { TransferDataLevelModal } from '../TransferDataLevelModal';
+import { AddDataAccessLevelModal } from '../modal/AddDataAccessLevelModal';
 
 interface OrganizationIndividualSettingsProps {
   organId: string;

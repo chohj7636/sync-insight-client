@@ -6,11 +6,11 @@ import { useGetOrganDetailInfo } from '@/entities/organizationDetail/hooks/useGe
 import PageHeader from '@/shared/components/PageHeader';
 import PageSkeleton from '@/shared/components/Skeleton/PageSkeleton';
 import { Button } from '@/shared/components/ui/button';
-import { ChangeOrganInfoModal } from '@/widgets/ChangeOrganInfoModal/ChangeOrganInfoModal';
 import OrganizationCategoryConfig from '@/widgets/OrganizationCatecoryConfig';
 import OrganizationDetailInfo from '@/widgets/OrganizationDetail/OrganizationDetailInfo';
 import OrganizationDetailPanel from '@/widgets/OrganizationDetail/OrganizationDetailPanel';
 import OrganizationIndividualSettings from '@/widgets/OrganizationDetail/OrganizationIndividualSettings';
+import { ChangeOrganInfoModal } from '@/widgets/modal/ChangeOrganInfoModal';
 
 const OrganizationDetailPage = () => {
   const { organId } = useParams<{ organId: string }>();
